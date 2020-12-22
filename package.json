@@ -1,6 +1,22 @@
 {
-  "name": "rich-web-platform",
-  "version": "0.0.0",
+  "name": "rich-web-client",
+  "version": "0.0.8",
+  "author": {
+    "email": "senthurai@gmail.com",
+    "name": "tin tin",
+    "url": "http://richwebclient.netconnects.in"
+  },
+  "homepage": "http://richwebclient.netconnects.in",
+  "readme": "./README.md",
+  "keywords": [
+    "panel",
+    "divider",
+    "resizable"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/netConnects/rich-web-platform.git"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,9 +25,10 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "~11.0.3",
+    "@angular/cdk": "^11.0.2",
     "@angular/common": "~11.0.3",
     "@angular/compiler": "~11.0.3",
     "@angular/core": "~11.0.3",
@@ -37,6 +54,7 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "ng-packagr": "^11.0.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",

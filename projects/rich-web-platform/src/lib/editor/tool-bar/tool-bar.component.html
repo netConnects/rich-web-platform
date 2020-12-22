@@ -1,0 +1,11 @@
+<div cla="d-flex justify-content-between">  
+    <div>
+        <div class="spacer"> </div>
+        <div (click)="open(view)" class="tool-icon btn btn-secondary overflow-hidden m-2" *ngFor="let view of views">
+            {{ view.id}}
+        </div>
+    </div>
+    <div id="expand">
+        >>>>
+    </div>
+</div>

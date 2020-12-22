@@ -1,0 +1,6 @@
+<div class="title-bar">
+    <div class="title-name">{{name}}</div>
+    <span class="title-name" [class.active]="view.isActive" *ngFor="let view of views">
+        <span>{{view.name}}</span>
+    </span>
+</div>
