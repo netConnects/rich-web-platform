@@ -1,0 +1,17 @@
+section {
+  display: table;
+}
+
+.mat-expansion-panel-body {
+  padding-right: 0px !important;
+}
+.obj-icon{
+  z-index: 2;
+  position: absolute;
+  display: block;
+  top: 0px;
+  left: 12px;
+}
+.striped{
+  background-color: rgb(212, 227, 255);
+}

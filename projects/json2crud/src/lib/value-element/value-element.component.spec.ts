@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PanelComponent } from './panel.component';
+import { ValueElementComponent } from './value-element.component';
 
-describe('panelComponent', () => {
-  let component: PanelComponent;
-  let fixture: ComponentFixture<PanelComponent>;
+describe('ValueElementComponent', () => {
+  let component: ValueElementComponent;
+  let fixture: ComponentFixture<ValueElementComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PanelComponent ]
+      declarations: [ ValueElementComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PanelComponent);
+    fixture = TestBed.createComponent(ValueElementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

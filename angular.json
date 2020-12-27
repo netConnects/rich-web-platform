@@ -170,6 +170,10 @@
       "prefix": "lib",
       "architect": {
         "build": {
+          "styles": [
+            "projects/json2crud/styles.scss",
+            "node_modules/bootstrap/dist/css/bootstrap.min.css"
+          ],
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/json2crud/tsconfig.lib.json",

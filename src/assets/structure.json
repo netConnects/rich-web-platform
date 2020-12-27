@@ -1,0 +1,32 @@
+[
+  {
+    "language": "java",
+    "replace": [
+      {
+        "name": "sim",
+        "find": "fin",
+        "replace": "rep"
+      },
+      {
+        "name": "sim1",
+        "find": "fin2",
+        "replace": "rep2"
+      }
+    ],
+    "parsers": [
+      {
+        "matcher": ""
+      }
+    ]
+  },
+  {
+    "language": "typescript",
+    "replace": [],
+    "parsers": [
+      {
+        "name": "simple",
+        "matcher": ""
+      }
+    ]
+  }
+]

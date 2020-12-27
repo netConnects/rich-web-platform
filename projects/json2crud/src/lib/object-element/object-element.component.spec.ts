@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PanelComponent } from './panel.component';
+import { ObjectElementComponent } from './object-element.component';
 
-describe('panelComponent', () => {
-  let component: PanelComponent;
-  let fixture: ComponentFixture<PanelComponent>;
+describe('ObjectElementComponent', () => {
+  let component: ObjectElementComponent;
+  let fixture: ComponentFixture<ObjectElementComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PanelComponent ]
+      declarations: [ ObjectElementComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PanelComponent);
+    fixture = TestBed.createComponent(ObjectElementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,19 @@
+<div class="row m-0">
+  <div class="col    m-2">
+    <h6>{{title}}</h6>
+  </div>
+  <div class=" p-0 m-0 float-right my-1">
+    <button mat-raised-button (click)="isEditing=true" *ngIf="!isEditing" class="mx-2 float-right ">Edit</button>
+    <button mat-raised-button *ngIf="isEditing" color="primary" class="mx-2 float-right">Save</button>
+    <button mat-raised-button (click)="isEditing=false" class="mx-2 float-right">reset</button>
+  </div>
+</div>
+<div class="row">
+
+  <div class="col-12  ">
+
+    <div #formContainer>
+
+    </div>
+  </div>
+</div>

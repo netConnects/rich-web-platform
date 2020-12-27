@@ -1,0 +1,17 @@
+<mat-accordion class=' w-100 pt-5'>
+  <div class="window">
+    <div class="panel">
+
+      <mat-card *ngIf="key" class="d-flex flex-center  ">
+        <div class="pt-1"> {{key}} </div> <button title="Add item to the {{key}}" mat-button
+          class="control float-right">
+          + </button>
+      </mat-card>
+      <mat-divider></mat-divider>
+      <div class="group  ">
+
+        <div #arrayContainer></div>
+      </div>
+    </div>
+  </div>
+</mat-accordion>

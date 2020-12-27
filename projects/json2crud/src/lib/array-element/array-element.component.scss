@@ -1,0 +1,23 @@
+section {
+  display: table;
+}
+
+.mat-expansion-panel-body {
+  padding-right: 0px !important;
+}
+.striped {
+  background-color: rgb(131, 131, 131);
+}
+.group {
+  padding-left: 15px;
+}
+.mat-expansion-panel-header.mat-expanded {
+  height: unset !important;
+}
+
+.window {
+  height: 100%;
+  .panel {
+    overflow: auto;
+  }
+}

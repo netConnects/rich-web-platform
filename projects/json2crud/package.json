@@ -4,9 +4,11 @@
   "description": "this is used to develop the forms for json",
   "peerDependencies": {
     "@angular/common": "^11.0.5",
+    "@angular/material": "^11.0.3",
+    "@ng-bootstrap/ng-bootstrap": "^8.0.0",
+    "tslib": "^2.0.0",
+    "@angular/animations": "^11.0.5",
     "@angular/core": "^11.0.5"
   },
-  "dependencies": {
-    "tslib": "^2.0.0"
-  }
+  "dependencies": {}
 }

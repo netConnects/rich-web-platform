@@ -1,44 +1,48 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef, AfterViewInit } from '@angular/core';
+import { JsonNode } from './common/json-node';
+import { JsonNodeHandler } from './common/json-Node-handler';
 
 @Component({
-  selector: 'json2crud',
+  selector: 'lib-json2crud',
   templateUrl: './json2crud.component.html',
-  styles: [
-  ]
+  styleUrls: ['./json2crud.component.css']
 })
-export class Json2crudComponent implements OnInit {
+export class Json2crudComponent extends JsonNode<Json2crudComponent> implements OnInit, AfterViewInit {
 
-  constructor() { }
-  @Input() loadData = "";
-  @Input() saveUrl = "";
+  @Input() loadData = ``;
+  @Input() saveUrl = ``;
   @Input() config = {};
-  ngOnInit(): void {
-    const jsonData = JSON.parse(this.loadData);
-    this.handleValue(jsonData, this.config);
+  @Input() title = '';
+
+  isEditing = false;
+
+  handler: JsonNodeHandler<Json2crudComponent> = new JsonNodeHandler(this, this.resolver, this.entry);;
+  @ViewChild('formContainer', { read: ViewContainerRef }) entry: ViewContainerRef;
+  constructor(private httpClient: HttpClient, private resolver: ComponentFactoryResolver) {
+    super();
   }
-  private handleValue(jsonData: any, config?: any) {
-    if (jsonData) {
-      if (jsonData instanceof Array && (this.config instanceof Array)) {
-        console.log("this is an array we are iterating");
-        this.handleArray(jsonData, this.config);
-      } else if (jsonData instanceof Object) {
-        console.log("this is an object we are looking through");
-        this.handleObject(jsonData);
-      } else {
-      }
+  ngAfterViewInit(): void {
+    this.handler = new JsonNodeHandler(this, this.resolver, this.entry);
+    let jsonData = ``;
+    try {
+      jsonData = JSON.parse(this.loadData);
+      this.handler.handleValue('', jsonData, this.config);
+      this.childrens.forEach(<T extends JsonNode<T>>(node: JsonNode<T>, i: number) => {
+        this.handler.handleNewNode<T>(node, i);
+      });
+    } catch {
+      this.httpClient.get(this.loadData).subscribe((result: {}) => {
+        this.handler.handleValue('', result, this.config);
+        this.childrens.forEach(<T extends JsonNode<T>>(node: JsonNode<T>, i: number) => {
+          this.handler.handleNewNode<T>(node, i);
+        });
+      });
     }
   }
 
-  handleObject(jsonData: any) {
+  ngOnInit(): void {
 
   }
-  handleArray(jsonData: any[], config: any[]) {
-    jsonData.forEach(data => {
-      if (config[0]) {
-        this.handleValue(data, config[0]);
-      }else{
-        this.handleValue(data);
-      }
-    });
-  }
+
 }
