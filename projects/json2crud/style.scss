@@ -6,6 +6,8 @@ section {
 
 .mat-expansion-panel-body {
   padding-right: 0px !important;
+  padding:0px !important;
+  margin-bottom: 2px;
 }
 .striped{
   background-color: grey;
@@ -19,3 +21,4 @@ button:focus{
 .mat-expansion-panel-header.mat-expanded {
   height: unset!important;
 }
+

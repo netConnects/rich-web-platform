@@ -58,8 +58,12 @@ export class PanelDividerComponent implements OnInit, AfterViewInit, IDivider {
   }
 
   private fixTransition(parent: IPanel, unsetValue: boolean): void {
+    if (unsetValue) {
+      parent.transition = 'none!important';
+    } else {
+      parent.transition = '';
+    }
     parent.children.forEach(child => {
-
       if (unsetValue) {
         child.transition = 'none!important';
       } else {
@@ -79,24 +83,22 @@ export class PanelDividerComponent implements OnInit, AfterViewInit, IDivider {
 
   handleDragging(parent: IPanel, axis: string, offset: number, eventBubble: boolean): void {
     let tLength = (this.axis === 'x') ? parent.getOffsetHeight() : parent.getOffsetWidth();
-    let isNotSet = true;
+    if (eventBubble) {
+     // console.log('tL=====>  ' + tLength);
+    }
+    let isLeft = true;
     parent.children.forEach(child => {
-      ({ isNotSet, tLength } = this.handleResize(isNotSet, offset, tLength, child, eventBubble));
+      ({ isLeft, tLength } = this.handleResize(isLeft, offset, tLength, child, eventBubble));
       if (child.divider) {
         child.divider.handleDragging(child, child.divider.axis, offset, true);
       }
     });
   }
 
-  private handleResize(isNotSet: boolean, offset: number, tLength: any, child: IPanel, eventBubble: boolean)
-    : { isNotSet: boolean, tLength: number } {
-    if (isNotSet) {
-      if (eventBubble) {
-        offset = (this.axis === 'x' ? child.getScrollHeight() : child.getScrollWidth()) + 2;
-        if ('divider3' === this.id) {
-         // console.log('offset: -> ' + offset);
-        }
-      }
+  private handleResize(isLeft: boolean, offset: number, tLength: any, child: IPanel, eventBubble: boolean)
+    : { isLeft: boolean, tLength: number } {
+    if (isLeft) {
+      offset = this.offset(eventBubble, offset, child);
       if (offset < tLength) {
         child.flexBasis = offset + 'px';
         tLength = tLength - offset;
@@ -104,12 +106,31 @@ export class PanelDividerComponent implements OnInit, AfterViewInit, IDivider {
         child.flexBasis = tLength + 'px';
         tLength = 0;
       }
-      isNotSet = false;
+      isLeft = false;
     } else {
-
       child.flexBasis = tLength + 'px';
     }
-    return { isNotSet, tLength };
+    return { isLeft, tLength };
+  }
+
+  private offset(eventBubble: boolean, offset: number, child: IPanel): number {
+    if (eventBubble) {
+      const length = child.flexBasis.substr(0, child.flexBasis.length - 2);
+      try {
+        offset = (Number(length));
+        if (!offset) {
+          offset = (this.axis === 'x' ? child.getScrollHeight() : child.getScrollWidth()) + 2;
+        }
+      } catch
+      {
+        offset = (this.axis === 'x' ? child.getScrollHeight() : child.getScrollWidth()) + 2;
+      }
+    }
+    if ('divider2q' === this.id) {
+      console.log('offset: -> ' + offset);
+    }
+
+    return offset;
   }
 
   @HostListener('document:mouseup', ['$event'])

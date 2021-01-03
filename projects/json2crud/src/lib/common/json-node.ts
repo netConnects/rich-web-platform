@@ -1,10 +1,15 @@
-import { JsonNodeHandler } from './json-Node-handler';
 import { Type, ViewContainerRef } from '@angular/core';
+import { GlobalConfig, JsonNodeConfig } from './global-config';
+import { JsonNodeHandler } from './json-Node-handler';
 
-export abstract class JsonNode<T> {
-  abstract entry: ViewContainerRef;
+export class JsonNode<T> {
+  entry: ViewContainerRef;
+  parent: any;
+  childrenKeyType: Map<string, string> = new Map();
   key = '';
+  removed = false;
   JSON_DATA: any;
+  globalConfig: GlobalConfig;
   get jsonData(): any {
     return this.JSON_DATA;
   }
@@ -12,10 +17,11 @@ export abstract class JsonNode<T> {
     this.JSON_DATA = data;
     this.findKey();
   }
-  config: any;
+  config: JsonNodeConfig;
   title = '';
-  type: Type<T>;
-  childrens: any[] = [];
+  type: Type<T> ;
+  childrens: JsonNode<any>[] = [];
+
   handler: JsonNodeHandler<T>;
   classes: Map<string, string> = new Map();
   index: number;
@@ -28,15 +34,17 @@ export abstract class JsonNode<T> {
     });
   }
 
-  getChildren<N extends JsonNode<N>>(): N[] {
+  getChildren(): JsonNode<any>[] {
     return this.childrens;
   }
 
-  addJsonNode<N extends JsonNode<N>>(node: { type: Type<N>, key: string, jsonData: any, config: any }): void {
+  addJsonNode<N extends JsonNode<N>>(node: JsonNode<N>): void {
     if (node.config && node.config.key) {
       this.title = this.jsonData[node.key];
     }
+    this.globalConfig = node.globalConfig;
     this.childrens.push(node);
+
   }
 
 }

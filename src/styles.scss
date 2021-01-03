@@ -1,12 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
+@import "gold-blue.scss";
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
+@import "bootstrap.css";
+
+$body-bg: rgb(255, 247, 247);
+$primary: rgba(57, 5, 116, 0.81);
+$secondary: rgb(177, 78, 17);
+$warning: rgb(120, 124, 30);
+$danger: rgba(168, 7, 7, 0.82);
+$info: rgb(23, 184, 177);
 .mat-card,
 .mat-expansion-panel-body {
   padding-bottom: 0px !important;
   padding-right: 0px !important;
+  margin-bottom: 5px;
 }
 button:focus {
   outline: none !important;
@@ -14,10 +23,15 @@ button:focus {
 
 .form-control {
   height: unset !important;
+  max-height: 32px;
+  min-height: 28px;
+  padding: 2px 8px;
+  border-radius: 0px;
+  font-weight: 550;
 }
 
-.col-form-label{
-  padding-bottom: unset!important;
+.col-form-label {
+  padding-bottom: unset !important;
 }
 
 .mat-expansion-panel-header.mat-expanded {

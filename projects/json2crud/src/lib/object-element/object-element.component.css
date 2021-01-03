@@ -1,7 +1,12 @@
 section {
   display: table;
 }
-
+.mat-expansion-panel-header{
+  max-height: 36px;
+}
+.mat-expansion-panel-header.mat-expanded {
+  max-height: 36px;
+}
 .mat-expansion-panel-body {
   padding-right: 0px !important;
 }
@@ -13,5 +18,10 @@ section {
   left: 12px;
 }
 .striped{
-  background-color: rgb(212, 227, 255);
+  background-color:var(--accent-color);
+}
+
+.mat-accordion, .mat-expansion-panel {
+  border-radius: 0px!important;
+
 }

@@ -7,11 +7,25 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'rich-web-platform';
+
+  input = {
+    data: 'assets/structure.json',
+
+  };
+
+  inputConfig = {
+    header: false,
+    data: {
+      input: 'textarea',
+      header: false
+    }
+  };
+
   loadData = 'assets/structure.json';
   saveUrl = '';
   configJson =
     {
-      language: { key: true, input: 'text' },
+      language: { key: true, input: 'text', hidden: true },
       addOrRemove: true,
       input: 'switch',
       replace: {

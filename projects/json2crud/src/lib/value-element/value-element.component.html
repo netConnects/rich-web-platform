@@ -1,7 +1,12 @@
-<mat-divider class="my-1"></mat-divider>
-<div class="form-group   row" [class.striped]="index%2">
-  <label for="{{key}}" class="col-sm-3 col-form-label">{{key}}</label>
-  <div class="col-sm-8">
-    <input type="text" class="form-control"  [(ngModel)]="jsonData" placeholder="">
+<div [class.striped]="index%2">
+  <mat-divider class="my-1"></mat-divider>
+  <div class="form-group  p-0 m-0  row">
+    <label for="{{key}}" class="col-sm-3 col-form-label">{{key}}</label>
+    <div class="col-sm-8">
+      <strong>
+
+        <input [type]="config.input" class="form-control h6" [(ngModel)]="jsonData" (change)="dataChanged()" placeholder="">
+      </strong>
+    </div>
   </div>
 </div>

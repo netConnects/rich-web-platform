@@ -11,11 +11,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgRatingModule } from 'd-ng-rating';
 import { ArrayElementComponent } from './array-element/array-element.component';
 import { Json2crudComponent } from './json2crud.component';
 import { ObjectElementComponent } from './object-element/object-element.component';
 import { ValueElementComponent } from './value-element/value-element.component';
-
 @NgModule({
   declarations: [
     Json2crudComponent,
@@ -36,7 +36,8 @@ import { ValueElementComponent } from './value-element/value-element.component';
     BrowserAnimationsModule,
     MatMenuModule,
     FormsModule,
-    NgbAccordionModule
+    NgbAccordionModule,
+    NgRatingModule
   ],
   exports: [Json2crudComponent]
 })

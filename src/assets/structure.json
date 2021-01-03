@@ -1,7 +1,127 @@
 [
   {
-    "language": "java",
+    "language": "Java",
     "replace": [
+      {
+        "name": "sim",
+        "find": "fin",
+        "replace": "rep"
+      },
+      {
+        "name": "sim1",
+        "find": "fin2",
+        "replace": "rep2"
+      },
+      {
+        "name": "sim",
+        "find": "fin",
+        "replace": "rep"
+      },
+      {
+        "name": "sim1",
+        "find": "fin2",
+        "replace": "rep2"
+      },
+      {
+        "name": "sim",
+        "find": "fin",
+        "replace": "rep"
+      },
+      {
+        "name": "sim1",
+        "find": "fin2",
+        "replace": "rep2"
+      },
+      {
+        "name": "sim",
+        "find": "fin",
+        "replace": "rep"
+      },
+      {
+        "name": "sim1",
+        "find": "fin2",
+        "replace": "rep2"
+      },
+      {
+        "name": "sim",
+        "find": "fin",
+        "replace": "rep"
+      },
+      {
+        "name": "sim1",
+        "find": "fin2",
+        "replace": "rep2"
+      },
+      {
+        "name": "sim",
+        "find": "fin",
+        "replace": "rep"
+      },
+      {
+        "name": "sim1",
+        "find": "fin2",
+        "replace": "rep2"
+      },
+      {
+        "name": "sim",
+        "find": "fin",
+        "replace": "rep"
+      },
+      {
+        "name": "sim1",
+        "find": "fin2",
+        "replace": "rep2"
+      },
+      {
+        "name": "sim",
+        "find": "fin",
+        "replace": "rep"
+      },
+      {
+        "name": "sim1",
+        "find": "fin2",
+        "replace": "rep2"
+      },
+      {
+        "name": "sim",
+        "find": "fin",
+        "replace": "rep"
+      },
+      {
+        "name": "sim1",
+        "find": "fin2",
+        "replace": "rep2"
+      },
+      {
+        "name": "sim",
+        "find": "fin",
+        "replace": "rep"
+      },
+      {
+        "name": "sim1",
+        "find": "fin2",
+        "replace": "rep2"
+      },
+      {
+        "name": "sim",
+        "find": "fin",
+        "replace": "rep"
+      },
+      {
+        "name": "sim1",
+        "find": "fin2",
+        "replace": "rep2"
+      },
+      {
+        "name": "sim",
+        "find": "fin",
+        "replace": "rep"
+      },
+      {
+        "name": "sim1",
+        "find": "fin2",
+        "replace": "rep2"
+      },
       {
         "name": "sim",
         "find": "fin",
@@ -20,7 +140,7 @@
     ]
   },
   {
-    "language": "typescript",
+    "language": "Typescript",
     "replace": [],
     "parsers": [
       {
