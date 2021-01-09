@@ -12,28 +12,34 @@ export class PanelDividerComponent implements OnInit, AfterViewInit, IDivider {
   @Input() axis = '';
   @Input() parent?: IPanel;
   @Input() id = '';
+
   constructor() {
   }
 
   @HostBinding('style.width') width: any = '';
   @HostBinding('style.height') height: any = '';
+  @HostBinding('style.transition') transition: any = '';
   @HostBinding('style.flex-basis') flexBasis: any;
   @HostBinding('style.background') color = 'var(--background-secondary)';
   binding = { overlay: false };
   private isDragging = false;
 
   ngAfterViewInit(): void {
+    if (this.axis === 'x') {
+      this.parent.flexDirection = 'column';
+    }
+
+  }
+
+  ngOnInit(): void {
     if (this.parent && !this.parent.parent && this.parent.children.length > 0) {
       this.fixTransition(this.parent, false);
       this.handleDragging(this.parent, this.axis, 0, true);
       this.fixTransition(this.parent, true);
     }
+
     this.width = this.axis === 'x' ? '100%' : '5px';
     this.height = this.axis === 'x' ? '5px' : '100%';
-  }
-
-  ngOnInit(): void {
-
   }
 
   @HostListener('mousedown', ['$event'])
@@ -59,9 +65,11 @@ export class PanelDividerComponent implements OnInit, AfterViewInit, IDivider {
 
   private fixTransition(parent: IPanel, unsetValue: boolean): void {
     if (unsetValue) {
+      this.transition = 'none!important';
       parent.transition = 'none!important';
     } else {
       parent.transition = '';
+      this.transition = '';
     }
     parent.children.forEach(child => {
       if (unsetValue) {
@@ -84,7 +92,7 @@ export class PanelDividerComponent implements OnInit, AfterViewInit, IDivider {
   handleDragging(parent: IPanel, axis: string, offset: number, eventBubble: boolean): void {
     let tLength = (this.axis === 'x') ? parent.getOffsetHeight() : parent.getOffsetWidth();
     if (eventBubble) {
-     // console.log('tL=====>  ' + tLength);
+      // console.log('tL=====>  ' + tLength);
     }
     let isLeft = true;
     parent.children.forEach(child => {
@@ -127,7 +135,7 @@ export class PanelDividerComponent implements OnInit, AfterViewInit, IDivider {
       }
     }
     if ('divider2q' === this.id) {
-      console.log('offset: -> ' + offset);
+      //  console.log('offset: -> ' + offset);
     }
 
     return offset;

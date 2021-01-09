@@ -33,7 +33,7 @@ export class ObjectElementComponent extends JsonNode<ObjectElementComponent> imp
     if (!this.title) {
       Object.keys(this.config).forEach(element => {
         if (this.config[element].key) {
-          this.handler.handleValue(element, '', this.config[element], this.globalConfig);
+          this.handler.handleValue(element, this.jsonData, '', this.config[element], this.globalConfig);
           this.title = element + '*';
         }
       });

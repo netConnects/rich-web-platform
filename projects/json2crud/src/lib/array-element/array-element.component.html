@@ -2,15 +2,16 @@
   <div class="window">
     <div class="panel">
 
-      <mat-card *ngIf="key" class="d-flex flex-center  ">
+      <mat-card *ngIf="key" class="d-flex flex-center flex-row justify-content-between ">
         <div class="pt-2"> {{key}} </div> <button title="Add item to the {{key}}" *ngIf="globalConfig.isEditing"
           [matMenuTriggerFor]="menu" mat-button (click)="addInArray()" class="control float-right">
           + </button>
-        <mat-menu #menu="matMenu" class="p-0 m-0">
-          <button mat-menu-item class="py-0">String</button>
-          <button mat-menu-item class="py-0">Object</button>
-        </mat-menu>
+
       </mat-card>
+      <mat-menu #menu="matMenu" class="p-0 m-0">
+        <button mat-menu-item class="py-0">String</button>
+        <button mat-menu-item class="py-0">Object</button>
+      </mat-menu>
       <mat-divider></mat-divider>
       <div class="group  ">
         <ng-container #arrayContainer></ng-container>

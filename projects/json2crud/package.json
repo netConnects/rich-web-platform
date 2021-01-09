@@ -1,6 +1,6 @@
 {
   "name": "json2crud",
-  "version": "0.0.1",
+  "version": "0.1.4",
   "description": "this is used to develop the forms for json",
   "peerDependencies": {
     "@angular/common": "^11.0.5",
@@ -14,5 +14,22 @@
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "d-ng-rating": "^1.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+  },
+  "author": {
+    "email": "senthurai@gmail.com",
+    "name": "tin tin",
+    "url": "http://richwebclient.netconnects.in"
+  },
+  "homepage": "http://richwebclient.netconnects.in",
+  "readme": "./README.md",
+  "keywords": [
+    "panel",
+    "divider",
+    "resizable"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/netConnects/rich-web-platform.git"
+  }
 }

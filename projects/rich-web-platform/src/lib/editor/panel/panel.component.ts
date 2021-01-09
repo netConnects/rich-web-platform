@@ -18,9 +18,11 @@ export class PanelComponent implements OnInit, IPanel {
   @HostBinding('class') class?: any;
   @HostBinding('style') style?: any = {};
   @HostBinding('style.width') width: any;
-  @HostBinding('style.transition') transition: any;
+  @HostBinding('style.transition') transition: any = '';
   @HostBinding('style.height') height: any;
-  @HostBinding('style.flex-basis') flexBasis: any;
+  @HostBinding('style.flex-basis') flexBasis: string;
+  @HostBinding('style.flex-direction') flexDirection = 'row';
+  @Input() @HostBinding('style.background-color') bgColor: '';
 
   isFullscreen = false;
   children: IPanel[] = [];
@@ -35,6 +37,7 @@ export class PanelComponent implements OnInit, IPanel {
   getScrollHeight(): number { return this.nativeElement.scrollHeight; }
   getOffsetTop(): number { return this.nativeElement.offsetTop; }
   getOffsetLeft(): number { return this.nativeElement.offsetLeft; }
+
 
   constructor(public renderer: Renderer2, private regionElement: ElementRef) {
     this.nativeElement = this.regionElement.nativeElement;
@@ -59,6 +62,7 @@ export class PanelComponent implements OnInit, IPanel {
     if (this.parent) {
       this.parent.children.push(this);
     }
+
     this.style.display = 'flex!important';
     this.style.flexWrap = 'nowrap !important';
     this.style.overflow = 'hidden !important';
@@ -68,6 +72,7 @@ export class PanelComponent implements OnInit, IPanel {
     this.style.padding = '0 !important';
     this.style.margin = '0 !important';
     this.style.flex = '1 1 !important; ';
+
   }
 
 

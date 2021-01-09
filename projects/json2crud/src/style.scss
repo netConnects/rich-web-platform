@@ -16,10 +16,10 @@ $info: rgb(23, 184, 177);
   padding-bottom: 0px !important;
   padding-right: 0px !important;
   padding-left: 5px !important;
-  margin-bottom: 5px;
-  height: 100%;
+  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .mat-expansion-panel-content {
@@ -45,4 +45,3 @@ button:focus {
 .mat-expansion-panel-header.mat-expanded {
   height: 38px !important;
 }
-

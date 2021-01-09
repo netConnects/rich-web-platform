@@ -1,7 +1,7 @@
 section {
   display: table;
 }
-.mat-expansion-panel-header{
+.mat-expansion-panel-header {
   max-height: 36px;
 }
 .mat-expansion-panel-header.mat-expanded {
@@ -9,19 +9,22 @@ section {
 }
 .mat-expansion-panel-body {
   padding-right: 0px !important;
+  padding-left: 5px !important;
+  height: 100%;
 }
-.obj-icon{
+
+.obj-icon {
   z-index: 2;
   position: absolute;
   display: block;
   top: 0px;
   left: 12px;
 }
-.striped{
-  background-color:var(--accent-color);
+.striped {
+  background-color: var(--accent-color);
 }
 
-.mat-accordion, .mat-expansion-panel {
-  border-radius: 0px!important;
-
+.mat-accordion,
+.mat-expansion-panel {
+  border-radius: 0px !important;
 }

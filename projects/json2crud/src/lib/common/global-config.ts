@@ -15,6 +15,7 @@ export class JsonNodeConfig {
   key = false;
   input: [] | {} | 'text' | 'textarea' | 'checkbox' | 'datetime' | 'select' | 'custom' = 'text';
   listOptions = [];
+  label = '';
   name = '';
   url = '';
   noNewProperty = false;
@@ -22,6 +23,9 @@ export class JsonNodeConfig {
   default: any;
   customEditor: CustomEditor;
   unique = true;
+  class = '';
+  compact = false;
+  expand = false;
 }
 
 export class CustomEditor {

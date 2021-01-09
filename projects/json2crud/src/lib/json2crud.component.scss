@@ -19,6 +19,7 @@ section {
 }
 .panel {
   scroll-snap-align: start;
+  flex: 1 0 100%
 }
 
 .scroll::-webkit-scrollbar {
@@ -30,7 +31,11 @@ section {
 }
 .controls {
   background-color: var(--accent-color);
-  max-height: 36px;
+  max-height: 32px;
+}
+
+.mat-button{
+  max-height: 32px;
 }
 .scroll::-webkit-scrollbar-thumb {
   background-color: rgb(143, 140, 140);

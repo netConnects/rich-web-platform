@@ -1,24 +1,19 @@
-<div class="row m-0 p-0" [hidden]="removed">
+<div class="row m-0 p-0 h-100" [hidden]="removed">
 
 
-  <mat-expansion-panel class="pr-0 mt-0 w-100" [class.striped]="index%2">
+  <mat-expansion-panel [expanded]="true" [togglePosition]="true" class="pr-0 mt-0 w-100 h-100 d-flex flex-column" [class.striped]="index%2">
 
-    <mat-expansion-panel-header>
+    <mat-expansion-panel-header *ngIf="show(config['header'])">
       <mat-panel-title class="pr-0 pl-5">
         {{title}}
       </mat-panel-title>
-
     </mat-expansion-panel-header>
 
-
-
-
     <ng-template matExpansionPanelContent #objectContainer>
-      <div></div>
 
     </ng-template>
-    <button class="obj-icon  " [matMenuTriggerFor]="menu" mat-icon-button color="secondary" title="Menu"
-      *ngIf="globalConfig.isEditing" aria-label="Example icon button with a menu icon">
+    <button class="obj-icon " [matMenuTriggerFor]="menu" mat-icon-button color="secondary" title="Menu"
+      *ngIf="globalConfig.isEditing && show(config['header'])" aria-label="Example icon button with a menu icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear"
         viewBox="0 0 16 16">
         <path
