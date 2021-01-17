@@ -171,7 +171,7 @@
       "architect": {
         "build": {
           "styles": [
-            "projects/json2crud/src/styles.scss",
+            "src/styles.scss",
             "node_modules/bootstrap/dist/css/bootstrap.min.css"
           ],
           "builder": "@angular-devkit/build-angular:ng-packagr",

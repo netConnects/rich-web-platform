@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'rich-web-platform';
   config: any = [];
-
+  reset: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   input = {
     data: 'assets/structure.json',
   };
@@ -99,7 +100,7 @@ export class AppComponent {
   configJson =
     {
       menu: {
-        hidden: true
+        hidden: false
       },
       language: { key: true, input: 'text' },
       addOrRemove: true,
@@ -115,6 +116,7 @@ export class AppComponent {
         }
       }
     };
+
   saveData(data): void {
     if (data) {
       this.configInputJson['Source language'].listOptions = [];
@@ -131,5 +133,8 @@ export class AppComponent {
 
   getKey(): string {
     return '';
+  }
+  ngOnInit(): void {
+    setInterval(() => this.reset.next(!this.reset.value), 20000);
   }
 }

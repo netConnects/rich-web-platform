@@ -17,7 +17,10 @@ section {
 .mat-expansion-panel-header.mat-expanded {
   max-height: 36px;
 }
-
+.controls  {
+  background-color: var(--accent-color);
+  max-height: 32px;
+}
 .window {
   height: 100%;
   .panel {
@@ -28,3 +31,7 @@ section {
   border-radius: 0px!important;
 
 }
+.add-new{
+  right:0px;
+}
+

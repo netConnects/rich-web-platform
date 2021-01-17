@@ -1,17 +1,18 @@
 <mat-accordion class=' w-100 pt-5' (click)="activate()">
   <div class="window">
     <div class="panel">
-
-      <mat-card *ngIf="key" class="d-flex flex-center flex-row justify-content-between ">
-        <div class="pt-2"> {{key}} </div> <button title="Add item to the {{key}}" *ngIf="globalConfig.isEditing"
-          [matMenuTriggerFor]="menu" mat-button (click)="addInArray()" class="control float-right">
+      <mat-card *ngIf="key" style="z-index: 20px;" class="d-flex flex-center flex-row justify-content-between p-2">
+        <div class="  py-2 pl-2"> {{key}} </div> <button title="Add item to the {{key}}" autoClose="outside"
+          triggers="manual" #p="ngbPopover" *ngIf="globalConfig.isEditing" [ngbPopover]="popContent"
+          [popoverTitle]="popTitle" (click)="open(p)" container="body" placement="left" class="controls mt-0 mb-2 mx-2
+          mat-focus-indicator float-right controls mat-raised-button mat-button-base
+          add-new">
           + </button>
-
       </mat-card>
-      <mat-menu #menu="matMenu" class="p-0 m-0">
-        <button mat-menu-item class="py-0">String</button>
-        <button mat-menu-item class="py-0">Object</button>
-      </mat-menu>
+
+      <div #menu class="p-0 m-0">
+
+      </div>
       <mat-divider></mat-divider>
       <div class="group  ">
         <ng-container #arrayContainer></ng-container>
@@ -19,3 +20,16 @@
     </div>
   </div>
 </mat-accordion>
+<ng-template #popTitle>
+  <div>Add to {{key}}</div>
+</ng-template>
+<ng-template #popContent>
+  <div *ngFor="let item of object.keys(childrenKeyType)">
+    <lib-value-element [key]='item' [parentData]="childrenKeyType" [formValue]='childrenKeyType[item]' [config]='{}'>
+    </lib-value-element>
+  </div>
+  <button mat-raised-button (click)="addInArray()" *ngIf=" show(config['Reset'])"
+    class="m-2 float-right controls mat-focus-indicator  controls float-right mat-raised-button mat-button-base ">create</button>
+  <button mat-raised-button (click)="p.close()" *ngIf=" show(config['Reset'])"
+    class="m-2 float-right controls mat-focus-indicator  controls float-right mat-raised-button mat-button-base  ">cancel</button>
+</ng-template>

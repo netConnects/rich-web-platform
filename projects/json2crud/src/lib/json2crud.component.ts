@@ -3,8 +3,9 @@ import {
   AfterViewInit, Component, ComponentFactoryResolver, ComponentRef,
   EventEmitter,
   HostBinding,
-  Input, OnInit, Output, ViewChild, ViewContainerRef
+  Input, OnInit, Output, ViewChild, ViewContainerRef, ViewEncapsulation
 } from '@angular/core';
+import { Observable } from 'rxjs';
 import { GlobalConfig, JsonNodeConfig } from './common/global-config';
 import { JsonNode } from './common/json-node';
 import { JsonNodeHandler } from './common/json-Node-handler';
@@ -12,7 +13,8 @@ import { JsonNodeHandler } from './common/json-Node-handler';
 @Component({
   selector: 'lib-json2crud',
   templateUrl: './json2crud.component.html',
-  styleUrls: ['./json2crud.component.scss']
+  styleUrls: ['./json2crud.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class Json2crudComponent extends JsonNode<Json2crudComponent> implements OnInit, AfterViewInit {
@@ -22,7 +24,7 @@ export class Json2crudComponent extends JsonNode<Json2crudComponent> implements 
   @Input() config: JsonNodeConfig;
   @Input() title = '';
   @Input() @HostBinding('style.background-color') bgColor: '';
-
+  @Input() resetFlag: Observable<boolean>;
   @Output() save: EventEmitter<{}> = new EventEmitter<{}>();
 
   searchText = '';
@@ -35,6 +37,9 @@ export class Json2crudComponent extends JsonNode<Json2crudComponent> implements 
   constructor(private httpClient: HttpClient, private resolver: ComponentFactoryResolver) {
     super();
   }
+  design(): void {
+
+  }
 
   saveData(): void {
     console.log(this.jsonData);
@@ -43,10 +48,18 @@ export class Json2crudComponent extends JsonNode<Json2crudComponent> implements 
   }
 
   ngAfterViewInit(): void {
+    if (this.resetFlag) {
+      this.resetFlag.subscribe(b => this.reset(true));
+    } else {
+      this.parseData();
+    }
+  }
+  private parseData(): void {
     this.handler = new JsonNodeHandler(this, this.resolver, this.entry);
     this.jsonData = ``;
 
     try {
+
       if (this.loadData && (typeof this.loadData === 'string')) {
         this.jsonData = JSON.parse(this.loadData + '');
       } else {
@@ -63,9 +76,8 @@ export class Json2crudComponent extends JsonNode<Json2crudComponent> implements 
         this.loadConfig();
       });
     }
-
-
   }
+
   loadConfig(): void {
     this.handleEdit();
   }
@@ -77,9 +89,9 @@ export class Json2crudComponent extends JsonNode<Json2crudComponent> implements 
     return this.config[name] && this.config[name].label ? this.config[name].label : name;
   }
 
-  reset(): void {
+  reset(force = false): void {
 
-    if (this.globalConfig.isEditing) {
+    if (this.globalConfig.isEditing || force) {
       this.globalConfig.isEditing = false;
       this.componentRefChildrens.forEach(ref => {
         ref.destroy();
@@ -88,7 +100,7 @@ export class Json2crudComponent extends JsonNode<Json2crudComponent> implements 
       delete this.componentRefChildrens;
       this.componentRefChildrens = [];
       this.childrens = [];
-      this.ngAfterViewInit();
+      this.parseData();
     }
   }
 
@@ -101,6 +113,7 @@ export class Json2crudComponent extends JsonNode<Json2crudComponent> implements 
   }
 
   ngOnInit(): void {
+
   }
 
 }

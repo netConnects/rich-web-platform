@@ -1,4 +1,5 @@
-import { Component, ComponentFactoryResolver, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ElementRef, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { JsonNodeConfig } from '../common/global-config';
 import { JsonNode } from '../common/json-node';
 import { JsonNodeHandler } from '../common/json-Node-handler';
 
@@ -18,28 +19,33 @@ export class ValueElementComponent extends JsonNode<ValueElementComponent> imple
     this.parentData[this.key] = str;
     this.jsonData = str;
   }
+  @Input()
   get formValue(): any {
     return this.parentData[this.key];
   }
 
+  @Input()
+  key: string;
+  @Input()
+  config: JsonNodeConfig;
+  @Input()
+  parentData = {};
   handler: JsonNodeHandler<ValueElementComponent> = new JsonNodeHandler(this, this.resolver, this.entry);
 
   ngOnInit(): void {
 
     this.handler = new JsonNodeHandler(this, this.resolver, this.entry);
     this.el.nativeElement.className = this.el.nativeElement.className + ' row';
-    this.el.nativeElement.parentElement.className =this.el.nativeElement.parentElement.className + ' container m-0 ';
   }
 
-  dataChanged(): void {
-    //this.parent.jsonData[this.key] = this.jsonData;
-  }
   isTextInput(): boolean {
     return this.parentData && (!this.config ||
       (!this.config.input || (this.config.input === '' || this.config.input === 'text'))
     ) && !(this.config.listOptions && this.config.listOptions.length > 0);
   }
+
   isListInput(): boolean {
     return (this.config.listOptions && this.config.listOptions.length > 0);
   }
+
 }

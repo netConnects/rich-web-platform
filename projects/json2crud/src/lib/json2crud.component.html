@@ -1,11 +1,18 @@
-<div class="d-flex flex-column container-fluid parent h-100 p-0 m-0 my-0 p-0">
+<div class="d-flex flex-column  w-100 parent h-100 p-0 m-0 my-0 p-0">
 
   <div class=" panel-header row m-0 p-1">
-    <button mat-button class="mx-1 float-right" *ngIf=" show(config['menu'])" type="button" (click)="searchText=''">
+    <button mat-button class="mx-1 float-right" [matMenuTriggerFor]="homeMenu" *ngIf=" show(config['menu'])"
+      type="button">
       <mat-icon class="mb-3">menu</mat-icon>
     </button>
-    <div class="col ml-1 mt-1 text-nowrap">
+    <mat-menu #homeMenu="matMenu" class="p-0 m-0">
+      <button mat-menu-item class="py-0 my-0 " (click)="design()">
+        <mat-icon class="mb-3">design_services</mat-icon>
+        Design
+      </button>
 
+    </mat-menu>
+    <div class="col ml-1 mt-1 text-nowrap">
       <h6>{{title}}</h6>
     </div>
     <div class=" p-0 m-0 float-right ">

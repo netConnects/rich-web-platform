@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,8 +19,9 @@ import { Json2crudComponent } from './json2crud.component';
 import { ObjectElementComponent } from './object-element/object-element.component';
 import { ValueElementComponent } from './value-element/value-element.component';
 import { ValueWrapperComponent } from './value-wrapper/value-wrapper.component';
-import {AutocompleteLibModule} from 'angular-ng-autocomplete';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     Json2crudComponent,
@@ -45,7 +46,10 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     FormsModule,
     NgbAccordionModule,
     NgRatingModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    NgbModule
   ],
   exports: [Json2crudComponent]
 })

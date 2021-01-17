@@ -1,3 +1,24 @@
 .striped{
   background-color: var(--primary-lighter-color);
+  filter: contrast(1.4);
 }
+.form-control, .mat-autocomplete-trigger {
+  height: unset !important;
+  max-height: 24px;
+  min-height: 16px;
+
+  background-color: unset;
+  padding: 2px 8px;
+  margin: 5px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  border-radius: 0px;
+  border: none;
+  border-bottom: 1px solid #8080809c;
+}
+.col-form-label {
+  padding-bottom: unset !important;
+  margin: 3px;
+  padding: 3px;
+}
+

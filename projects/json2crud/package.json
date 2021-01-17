@@ -1,12 +1,11 @@
 {
   "name": "json2crud",
-  "version": "0.1.4",
+  "version": "0.1.9",
   "description": "this is used to develop the forms for json",
   "peerDependencies": {
     "@angular/common": "^11.0.5",
     "@angular/material": "^11.0.3",
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
-    "tslib": "^2.0.0",
     "@angular/animations": "^11.0.5",
     "@angular/core": "^11.0.5",
     "@fortawesome/angular-fontawesome": "^0.8.1",
@@ -15,6 +14,7 @@
     "d-ng-rating": "^1.1.0"
   },
   "dependencies": {
+    "tslib": "^2.0.0"
   },
   "author": {
     "email": "senthurai@gmail.com",

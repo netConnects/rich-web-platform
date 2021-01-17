@@ -4,11 +4,11 @@
       <bb-panel id="top-window3" #topWindow3q [isView]='false' class="pane-width" [parent]="bottomWindow236"
         [rFlex]="true">
         <lib-json2crud [loadData]="loadData" [saveUrl]="saveUrl" [config]="configJson" title="Oops 2 New"
-          class="w-100 h-100" (save)="saveData($event)"></lib-json2crud>
+          [resetFlag]="reset" class="w-100 h-100" (save)="saveData($event)"></lib-json2crud>
       </bb-panel>
       <bb-panel-divider #divider3q [parent]="bottomWindow236" [axis]="'y'"></bb-panel-divider>
-      <bb-panel #bottomWindow23q id="bottom-window2" class="pane-width" [isView]='false' [divider]="divider5q" [parent]="bottomWindow236"
-        [rFlex]="true">
+      <bb-panel #bottomWindow23q id="bottom-window2" class="pane-width" [isView]='false' [divider]="divider5q"
+        [parent]="bottomWindow236" [rFlex]="true">
         <bb-panel class="pane-height" #bottomWindow5q id="bottom-window2" [isView]='false' [parent]="bottomWindow23q"
           [rFlex]="true">
           <lib-json2crud [loadData]="inputData" [saveUrl]="saveUrl" [config]="configInputJson" title="Oops Input"
@@ -18,7 +18,7 @@
         <bb-panel #bottomWindow6q id="bottom-window2" [isView]='false' [parent]="bottomWindow23q" class="pane-height"
           [rFlex]="true">
           <lib-json2crud [loadData]="outputData" [saveUrl]="saveUrl" [config]="configOutputJson" title="New output"
-             class="w-100 h-100"></lib-json2crud>
+            class="w-100 h-100"></lib-json2crud>
         </bb-panel>
       </bb-panel>
     </bb-panel>

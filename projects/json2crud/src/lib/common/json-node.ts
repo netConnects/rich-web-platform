@@ -5,7 +5,7 @@ import { JsonNodeHandler } from './json-Node-handler';
 export class JsonNode<T> {
   entry: ViewContainerRef;
   parent: any;
-  childrenKeyType: Map<string, string> = new Map();
+  childrenKeyType: {};
   key = '';
   removed = false;
   JSON_DATA: any;
@@ -17,7 +17,10 @@ export class JsonNode<T> {
   }
   set jsonData(data: any) {
     this.JSON_DATA = data;
-    this.findKey();
+    if (this.parent) {
+
+      this.parent.findKey();
+    }
   }
   config: JsonNodeConfig;
   title = '';

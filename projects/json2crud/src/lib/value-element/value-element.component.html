@@ -1,6 +1,7 @@
-<div [class.striped]="index%2" removeWrapper="{{config.expand}}" [compact]="config.compact" *ngIf="show(config)"
-  class="col m-1 {{config.class}}">
-  <mat-divider *ngIf="!(config.expand||config.compact)" class="my-1"></mat-divider>
+<div [class.striped]="index%2" removeWrapper="{{config.expand}}" [style]="config['style']" [compact]="config.compact"
+  *ngIf="show(config)" class="col {{config.class}}"
+  [class.flex-column]="parentData &&  (!config || (config.input && config.input==='textarea')) "
+  [class.d-flex]="parentData &&  (!config || (config.input && config.input==='textarea')) ">
   <div class="form-group  p-0 m-0 row">
     <label for="{{key}}" class="col-sm-3 m-1 col-form-label" style="    white-space: nowrap;"
       *ngIf="showLabel(config)">{{key}}</label>
@@ -9,7 +10,7 @@
         placeholder="" />
 
       <input type="text" *ngIf="isListInput()" placeholder="Pick one" aria-label="Number" matInput class="m-2"
-        [matAutocomplete]="auto">
+        [(ngModel)]="formValue" [matAutocomplete]="auto">
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let option of config.listOptions" [value]="option">
           {{option}}
