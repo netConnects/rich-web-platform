@@ -20,12 +20,16 @@ import { JsonNodeHandler } from './common/json-Node-handler';
 export class Json2crudComponent extends JsonNode<Json2crudComponent> implements OnInit, AfterViewInit {
 
   @Input() loadData: any;
+  @Input() foldingDirection: 'x' | 'y' | '' = '';
+  closingDirection: 'x' | 'y' | '' = '';
   @Input() saveUrl = ``;
   @Input() config: JsonNodeConfig;
   @Input() title = '';
   @Input() @HostBinding('style.background-color') bgColor: '';
+  @Input() @HostBinding('style.max-width') maxWidth = 'unset';
   @Input() resetFlag: Observable<boolean>;
   @Output() save: EventEmitter<{}> = new EventEmitter<{}>();
+  @Output() closed: EventEmitter<string> = new EventEmitter<string>();
 
   searchText = '';
   globalConfig: GlobalConfig = new GlobalConfig();
@@ -39,6 +43,21 @@ export class Json2crudComponent extends JsonNode<Json2crudComponent> implements 
   }
   design(): void {
 
+  }
+  toggleOpen(bubble = true): void {
+    if (this.closingDirection) {
+      this.closingDirection = '';
+      this.maxWidth = 'unset';
+    } else {
+      this.closingDirection = this.foldingDirection;
+      if (this.closingDirection === 'y') {
+        this.maxWidth = '40px';
+      }
+    }
+    if (bubble) {
+
+      this.closed.emit(this.closingDirection);
+    }
   }
 
   saveData(): void {

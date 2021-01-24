@@ -31,7 +31,9 @@ export class ValueElementComponent extends JsonNode<ValueElementComponent> imple
   @Input()
   parentData = {};
   handler: JsonNodeHandler<ValueElementComponent> = new JsonNodeHandler(this, this.resolver, this.entry);
-
+  checkbox(): boolean {
+    return this.config && this.config.input && this.config.input === 'checkbox';
+  }
   ngOnInit(): void {
 
     this.handler = new JsonNodeHandler(this, this.resolver, this.entry);

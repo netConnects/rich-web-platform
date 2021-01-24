@@ -3,9 +3,9 @@
   [class.flex-column]="parentData &&  (!config || (config.input && config.input==='textarea')) "
   [class.d-flex]="parentData &&  (!config || (config.input && config.input==='textarea')) ">
   <div class="form-group  p-0 m-0 row">
-    <label for="{{key}}" class="col-sm-3 m-1 col-form-label" style="    white-space: nowrap;"
+    <label for="{{key}}" class="flex-shrink-1 col-4 col-form-label" style="    white-space: nowrap;"
       *ngIf="showLabel(config)">{{key}}</label>
-    <div class="col">
+    <div class="col" *ngIf="!checkbox()">
       <input [type]="config.input" class="form-control h6" *ngIf="isTextInput()" [(ngModel)]="formValue"
         placeholder="" />
 
@@ -16,6 +16,10 @@
           {{option}}
         </mat-option>
       </mat-autocomplete>
+    </div>
+    <div class="col" *ngIf="checkbox()">
+      <input type="checkbox" class="p-2 m-2" [(ngModel)]="formValue"/>
+
     </div>
   </div>
   <textarea class=" col  h6  h-100" *ngIf="parentData &&  (!config || (config.input && config.input==='textarea')) "

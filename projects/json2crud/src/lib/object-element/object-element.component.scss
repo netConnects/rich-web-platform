@@ -20,10 +20,15 @@ section {
   top: 0px;
   left: 12px;
 }
-.striped {
-  background-color: var(--accent-color);
-}
 
+.striped {
+  background-color: var(--primary-light-color);
+  color: var(--text-warn-darker-color);
+  .controls {
+    background-color: var(--primary-light-color);
+    color: var(--text-warn-darker-color);
+  }
+}
 .mat-accordion,
 .mat-expansion-panel {
   border-radius: 0px !important;

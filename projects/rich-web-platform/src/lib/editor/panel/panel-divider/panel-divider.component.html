@@ -1,4 +1,4 @@
 <div *ngIf="binding.overlay" class="overlay"></div>
-<div [class]="'handle-' + axis">
+<div [class]="'handle-' + axis" [class.d-none]="!enabled">
     <span></span>
 </div>

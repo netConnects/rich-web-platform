@@ -1,4 +1,3 @@
-
 $body-bg: rgb(255, 247, 247);
 $primary: rgba(57, 5, 116, 0.81);
 $secondary: rgb(177, 78, 17);
@@ -30,7 +29,8 @@ button:focus {
   border-radius: 0px;
   font-weight: 550;
 }
-.panel-header , .popover-header {
+.panel-header,
+.popover-header {
   background-color: var(--primary-color);
   color: var(--text-warn-darker-color);
 }
@@ -59,9 +59,7 @@ section {
   min-width: 300px;
   overflow: auto;
 }
-.parent {
-  background-color: var(--primary-lighter-color);
-}
+
 .panel {
   scroll-snap-align: start;
   flex: 1 0 100%;
@@ -75,7 +73,6 @@ section {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 .controls {
-  background-color: var(--accent-color);
   max-height: 32px;
 }
 
@@ -83,7 +80,7 @@ section {
   max-height: 32px;
 }
 .scroll::-webkit-scrollbar-thumb {
-  background-color: rgb(143, 140, 140);
+  background-color: #d0e2bb;
 }
 
 .mat-expansion-panel-header {

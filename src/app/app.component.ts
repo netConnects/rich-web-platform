@@ -13,7 +13,11 @@ export class AppComponent implements OnInit {
   input = {
     data: 'assets/structure.json',
   };
-
+  layoutConfifg = {
+    leftPane: {
+      open: ''
+    }
+  };
 
   loadData = 'assets/structure.json';
   saveUrl = '';
@@ -102,6 +106,10 @@ export class AppComponent implements OnInit {
       menu: {
         hidden: false
       },
+      complete: {
+        input: 'checkbox'
+
+      },
       language: { key: true, input: 'text' },
       addOrRemove: true,
       input: 'switch',
@@ -116,7 +124,9 @@ export class AppComponent implements OnInit {
         }
       }
     };
-
+  leftPaneOpen: string = '';
+  rightTopPaneOpen: string = '';
+  rightBottomPaneOpen: string = '';
   saveData(data): void {
     if (data) {
       this.configInputJson['Source language'].listOptions = [];
@@ -131,10 +141,13 @@ export class AppComponent implements OnInit {
 
   }
 
+  handleClose(orientation: string): void {
+    this.leftPaneOpen = orientation;
+  }
   getKey(): string {
     return '';
   }
   ngOnInit(): void {
-    setInterval(() => this.reset.next(!this.reset.value), 20000);
+    //    setInterval(() => this.reset.next(!this.reset.value), 20000);
   }
 }

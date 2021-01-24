@@ -1,6 +1,6 @@
 {
   "name": "rich-web-platform",
-  "version": "0.1.6",
+  "version": "0.1.81",
   "peerDependencies": {
     "@angular/common": "^11.0.5",
     "@angular/core": "^11.0.5",

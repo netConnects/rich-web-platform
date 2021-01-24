@@ -4,7 +4,7 @@ import { JsonNodeHandler } from './json-Node-handler';
 
 export class JsonNode<T> {
   entry: ViewContainerRef;
-  parent: any;
+  parent: JsonNode<any>;
   childrenKeyType: {};
   key = '';
   removed = false;
@@ -22,6 +22,7 @@ export class JsonNode<T> {
       this.parent.findKey();
     }
   }
+
   config: JsonNodeConfig;
   title = '';
   type: Type<T>;
@@ -56,5 +57,7 @@ export class JsonNode<T> {
     this.childrens.push(node);
 
   }
-
+  removeThis(node: JsonNode<any>): void {
+    this.jsonData.splice(node.index, 1);
+  }
 }

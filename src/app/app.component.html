@@ -1,24 +1,33 @@
-<div class="editor-window row overflow-hidden p-0 m-0 ">
+<div style="filter:invert(1)" class="editor-window row overflow-hidden p-0 m-0  ">
   <div class=" d-flex flex-row middle-pane p-0 m-0 w-100 h-100 ">
     <bb-panel #bottomWindow236 id="bottom-window2" [isView]='false' [divider]="divider3q" [rFlex]="true">
-      <bb-panel id="top-window3" #topWindow3q [isView]='false' class="pane-width" [parent]="bottomWindow236"
-        [rFlex]="true">
+      <bb-panel id="top-window3" #topWindow3q [isView]='false' [class.pane-width]="leftPaneOpen!='y'"
+        [class.left-title-width]="leftPaneOpen==='y'" [parent]="bottomWindow236" [rFlex]="true">
         <lib-json2crud [loadData]="loadData" [saveUrl]="saveUrl" [config]="configJson" title="Oops 2 New"
-          [resetFlag]="reset" class="w-100 h-100" (save)="saveData($event)"></lib-json2crud>
+          [foldingDirection]="'y'" (closed)="handleClose($event)" [resetFlag]="reset" class="w-100 h-100"
+          (save)="saveData($event)">
+        </lib-json2crud>
       </bb-panel>
-      <bb-panel-divider #divider3q [parent]="bottomWindow236" [axis]="'y'"></bb-panel-divider>
+      <bb-panel-divider #divider3q [parent]="bottomWindow236" [axis]="'y'" [enabled]="leftPaneOpen===''">
+      </bb-panel-divider>
       <bb-panel #bottomWindow23q id="bottom-window2" class="pane-width" [isView]='false' [divider]="divider5q"
         [parent]="bottomWindow236" [rFlex]="true">
-        <bb-panel class="pane-height" #bottomWindow5q id="bottom-window2" [isView]='false' [parent]="bottomWindow23q"
-          [rFlex]="true">
-          <lib-json2crud [loadData]="inputData" [saveUrl]="saveUrl" [config]="configInputJson" title="Oops Input"
+        <bb-panel [class.pane-height]="rightTopPaneOpen!='x'" [class.top-title-width]="rightTopPaneOpen==='x'"
+          #bottomWindow5q id="bottom-window2" [isView]='false' [parent]="bottomWindow23q" [rFlex]="true">
+          <lib-json2crud #topRightJson [loadData]="inputData" [saveUrl]="saveUrl" [config]="configInputJson"
+            title="Oops Input" [foldingDirection]="'x'"
+            (closed)="rightTopPaneOpen=$event;$event && rightBottomPaneOpen!==''?bottomRightJson.toggleOpen(false):'';rightBottomPaneOpen=''"
             (save)="processInput($event)" class="w-100 h-100"> </lib-json2crud>
         </bb-panel>
-        <bb-panel-divider #divider5q [parent]="bottomWindow23q" [axis]="'x'"></bb-panel-divider>
-        <bb-panel #bottomWindow6q id="bottom-window2" [isView]='false' [parent]="bottomWindow23q" class="pane-height"
+        <bb-panel-divider #divider5q [parent]="bottomWindow23q" [axis]="'x'"
+          [enabled]="rightBottomPaneOpen==='' && rightTopPaneOpen===''"></bb-panel-divider>
+        <bb-panel #bottomWindow6q id="bottom-window2" [isView]='false' [parent]="bottomWindow23q"
+          [class.pane-height]="rightBottomPaneOpen!='x'" [class.top-title-width]="rightBottomPaneOpen==='x'"
           [rFlex]="true">
-          <lib-json2crud [loadData]="outputData" [saveUrl]="saveUrl" [config]="configOutputJson" title="New output"
-            class="w-100 h-100"></lib-json2crud>
+          <lib-json2crud #bottomRightJson [loadData]="outputData" [saveUrl]="saveUrl" [config]="configOutputJson"
+            title="New output"
+            (closed)="rightBottomPaneOpen=$event;$event!=='' && rightTopPaneOpen!==''?topRightJson.toggleOpen(false):'';rightTopPaneOpen=''"
+            [foldingDirection]="'x'" class="w-100 h-100"></lib-json2crud>
         </bb-panel>
       </bb-panel>
     </bb-panel>

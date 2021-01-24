@@ -23,7 +23,7 @@ export class PanelComponent implements OnInit, IPanel {
   @HostBinding('style.flex-basis') flexBasis: string;
   @HostBinding('style.flex-direction') flexDirection = 'row';
   @Input() @HostBinding('style.background-color') bgColor: '';
-
+  flexBasisOld = '';
   isFullscreen = false;
   children: IPanel[] = [];
   nativeElement: any;
@@ -62,7 +62,7 @@ export class PanelComponent implements OnInit, IPanel {
     if (this.parent) {
       this.parent.children.push(this);
     }
-
+    this.flexBasisOld = this.flexBasis;
     this.style.display = 'flex!important';
     this.style.flexWrap = 'nowrap !important';
     this.style.overflow = 'hidden !important';

@@ -6,7 +6,7 @@ import { JsonNodeHandler } from '../common/json-Node-handler';
 @Component({
   selector: 'lib-object-element',
   templateUrl: './object-element.component.html',
-  styleUrls: ['./object-element.component.css']
+  styleUrls: ['./object-element.component.scss']
 })
 export class ObjectElementComponent extends JsonNode<ObjectElementComponent> implements OnInit {
   @Output() cloner: EventEmitter<ObjectElementComponent> = new EventEmitter();
@@ -23,6 +23,7 @@ export class ObjectElementComponent extends JsonNode<ObjectElementComponent> imp
 
   remove(): void {
     this.removed = true;
+    this.parent.removeThis(this);
   }
 
   ngOnInit(): void {

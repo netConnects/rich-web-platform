@@ -25,6 +25,7 @@ export interface Resizeable {
 export interface IDivider {
   axis: string;
   handleDragging(grandChild: IPanel, axis: string, offset: number, buble: boolean): void;
+ fixTransition(parent: IPanel, unsetValue: boolean): void;
 }
 
 export interface IPanel extends Parentable<IPanel>, Closable, Iconable, Resizeable {
@@ -34,6 +35,7 @@ export interface IPanel extends Parentable<IPanel>, Closable, Iconable, Resizeab
   views: IView[];
   style?: any;
   name: string;
+  flexBasisOld: string;
   flexBasis: string;
   flexDirection: string;
   divider?: IDivider;

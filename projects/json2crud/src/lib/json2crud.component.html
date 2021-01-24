@@ -1,8 +1,12 @@
-<div class="d-flex flex-column  w-100 parent h-100 p-0 m-0 my-0 p-0">
+<div class=" y-close panel-header  h-100" [class.d-none]="closingDirection!=='y'" >
+  <h6 style=" text-orientation: sideways-right;  writing-mode: vertical-lr; cursor: pointer; " (click)="toggleOpen()" class="p-0 m-2">
+    {{title}}</h6>
+</div>
+<div [class.d-none]="closingDirection!==''" class="d-flex flex-column  w-100 parent h-100 p-0 m-0 my-0 p-0">
 
   <div class=" panel-header row m-0 p-1">
-    <button mat-button class="mx-1 float-right" [matMenuTriggerFor]="homeMenu" *ngIf=" show(config['menu'])"
-      type="button">
+    <button mat-button class="mx-1 float-right" [matMenuTriggerFor]="homeMenu"
+      *ngIf=" show(config['menu']) && closingDirection==''" type="button">
       <mat-icon class="mb-3">menu</mat-icon>
     </button>
     <mat-menu #homeMenu="matMenu" class="p-0 m-0">
@@ -12,10 +16,10 @@
       </button>
 
     </mat-menu>
-    <div class="col ml-1 mt-1 text-nowrap">
-      <h6>{{title}}</h6>
+    <div class="col ml-1 mt-1 text-nowrap" *ngIf="closingDirection!='y'">
+      <h6 style="   cursor: pointer; " (click)="toggleOpen()"  >{{title}}</h6>
     </div>
-    <div class=" p-0 m-0 float-right ">
+    <div class=" p-0 m-0 float-right " *ngIf="closingDirection==''">
 
       <div class="text-nowrap float-left">
         <button mat-raised-button (click)="globalConfig.isEditing=true"
@@ -27,7 +31,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="show(config['filter'])" class=" d-flex controls row ml-3 mb-1">
+  <div *ngIf="show(config['filter']) && closingDirection==''" class=" d-flex controls row ml-3 mb-1">
     <div class="input-group ">
       <input mat-text class="form-control ml-2 my-0   " type="text" name="search" [(ngModel)]="searchText"
         autocomplete="off" placeholder="Start searching ">
@@ -43,8 +47,8 @@
       </div>
     </div>
   </div>
-  <div class="row h-100  m-0 overflow-auto scroll">
-    <form class="col h-100 p-0 m-0  ">
+  <div class="row h-100  m-0 overflow-auto scroll" [class.d-none]="closingDirection!==''">
+    <form class="col  p-0 m-0  ">
       <fieldset [disabled]="!globalConfig.isEditing" class="h-100">
         <div #formContainer>
         </div>

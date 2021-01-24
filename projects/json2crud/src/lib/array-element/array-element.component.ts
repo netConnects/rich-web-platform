@@ -13,7 +13,7 @@ export class ArrayElementComponent extends JsonNode<ArrayElementComponent> imple
   @ViewChild('arrayContainer', { read: ViewContainerRef, static: true }) entry: ViewContainerRef;
   @Output() cloner: EventEmitter<ArrayElementComponent> = new EventEmitter();
   object = Object;
-  p: any;
+  createWindow: any;
   handler: JsonNodeHandler<ArrayElementComponent> = new JsonNodeHandler(this, this.resolver, this.entry);
   constructor(private resolver: ComponentFactoryResolver) {
     super();
@@ -47,8 +47,7 @@ export class ArrayElementComponent extends JsonNode<ArrayElementComponent> imple
     //   this.entry.element.nativeElement.parent.class.remove('activated');
   }
   open(p: any): void {
-    this.p = p;
-
+    this.createWindow = p;
     p.open();
   }
 
@@ -56,7 +55,7 @@ export class ArrayElementComponent extends JsonNode<ArrayElementComponent> imple
     const newObject = { ...this.childrenKeyType };
     this.handler.handleNewNode(this, this.handler.handleValue('', this.jsonData, newObject, this.config, this.globalConfig),
       this.jsonData.length, true);
-    this.p.close();
+    this.createWindow.close();
   }
 }
 

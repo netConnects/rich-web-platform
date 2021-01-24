@@ -5,20 +5,26 @@ section {
 .mat-expansion-panel-body {
   padding-right: 0px !important;
 }
-.striped {
-  background-color: var(--accent-color);
-}
+
 .group {
   margin-left: 15px;
 }
-.mat-expansion-panel-header{
+.mat-expansion-panel-header {
   max-height: 36px;
 }
 .mat-expansion-panel-header.mat-expanded {
   max-height: 36px;
 }
-.controls  {
-  background-color: var(--accent-color);
+.striped {
+  background-color: var(--accent-light-color);
+  color: var(--text-warn-darker-color);
+  .controls {
+    background-color: var(--accent-light-color);
+    color: var(--text-warn-darker-color);
+  }
+}
+
+.controls {
   max-height: 32px;
 }
 .window {
@@ -27,11 +33,10 @@ section {
     overflow: auto;
   }
 }
-.mat-accordion, .mat-expansion-panel {
-  border-radius: 0px!important;
-
+.mat-accordion,
+.mat-expansion-panel {
+  border-radius: 0px !important;
 }
-.add-new{
-  right:0px;
+.add-new {
+  right: 0px;
 }
-

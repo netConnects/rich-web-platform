@@ -1,7 +1,4 @@
-.striped{
-  background-color: var(--primary-lighter-color);
-  filter: contrast(1.4);
-}
+
 .form-control, .mat-autocomplete-trigger {
   height: unset !important;
   max-height: 24px;
@@ -22,3 +19,32 @@
   padding: 3px;
 }
 
+.striped {
+  background-color: var(--primary-darker-color);
+  color: var(--text-warn-darker-color);
+  .controls {
+    background-color: var(--primary-darker-color);
+    color: var(--text-warn-darker-color);
+  }
+}
+
+.container{
+  display: flex;
+}
+
+.column, .panel{
+  flex-grow: 1;
+}
+
+.row{
+  display: flex;
+  flex-wrap: wrap;
+   $breakpoint: 250px;
+  --multiplier: calc( #{$breakpoint} - 100%);
+  .col{
+    min-width: 33%;
+    max-width: 100%;
+    flex-grow: 1;
+    flex-basis: calc( var(--multiplier) * 999 );
+      }
+}

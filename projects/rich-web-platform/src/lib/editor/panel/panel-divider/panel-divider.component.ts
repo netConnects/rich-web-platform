@@ -12,7 +12,18 @@ export class PanelDividerComponent implements OnInit, AfterViewInit, IDivider {
   @Input() axis = '';
   @Input() parent?: IPanel;
   @Input() id = '';
-
+  ENABLED = true;
+  @Input() get enabled(): boolean {
+    return this.ENABLED;
+  }
+  set enabled(e: boolean) {
+    if (this.parent) {
+      this.fixTransition(this.parent, true);
+      this.handleEnable(e);
+      this.fixTransition(this.parent, false);
+    }
+    this.ENABLED = e;
+  }
   constructor() {
   }
 
@@ -23,6 +34,21 @@ export class PanelDividerComponent implements OnInit, AfterViewInit, IDivider {
   @HostBinding('style.background') color = 'var(--background-secondary)';
   binding = { overlay: false };
   private isDragging = false;
+
+  private handleEnable(e: boolean): void {
+    if (e) {
+      this.parent.children.forEach(child => {
+        child.flexBasis = child.flexBasisOld;
+      });
+    } else {
+      this.parent.children.forEach(child => {
+        child.flexBasisOld = child.flexBasis;
+        child.flexBasis = 'unset';
+      });
+    }
+    this.ENABLED = e;
+
+  }
 
   ngAfterViewInit(): void {
     if (this.axis === 'x') {
@@ -45,7 +71,7 @@ export class PanelDividerComponent implements OnInit, AfterViewInit, IDivider {
   @HostListener('mousedown', ['$event'])
   onMousedown(mouseEvent: MouseEvent): void {
     // start
-    if (mouseEvent.which === 1 && this.parent?.children) {
+    if (mouseEvent.which === 1 && this.parent?.children && this.enabled) {
       this.isDragging = true;
       this.fixTransition(this.parent, false);
       this.binding.overlay = true;
@@ -58,18 +84,17 @@ export class PanelDividerComponent implements OnInit, AfterViewInit, IDivider {
     const panelX = mouseEvent.clientX - parent.getOffsetLeft();
     const offset =
       this.axis === 'x' ?
-        parent.getOffsetHeight() - (parent.getOffsetHeight() - panelY) :
-        parent.getOffsetWidth() - (parent.getOffsetWidth() - panelX);
+        parent.getOffsetHeight() - (parent.getOffsetHeight() - panelY) : parent.getOffsetWidth() - (parent.getOffsetWidth() - panelX);
     return offset;
   }
 
-  private fixTransition(parent: IPanel, unsetValue: boolean): void {
+  fixTransition(parent: IPanel, unsetValue: boolean): void {
     if (unsetValue) {
       this.transition = 'none!important';
       parent.transition = 'none!important';
     } else {
-      parent.transition = '';
-      this.transition = '';
+      parent.transition = 'unset';
+      this.transition = 'unset';
     }
     parent.children.forEach(child => {
       if (unsetValue) {
@@ -77,7 +102,9 @@ export class PanelDividerComponent implements OnInit, AfterViewInit, IDivider {
       } else {
         child.transition = '';
       }
-      this.fixTransition(child, unsetValue);
+      if (child.divider) {
+        child.divider.fixTransition(child, unsetValue);
+      }
     });
   }
 
