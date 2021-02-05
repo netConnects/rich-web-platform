@@ -1,15 +1,15 @@
 <div [class.striped]="index%2" removeWrapper="{{config.expand}}" [style]="config['style']" [compact]="config.compact"
   *ngIf="show(config)" class="col {{config.class}}"
-  [class.flex-column]="parentData &&  (!config || (config.input && config.input==='textarea')) "
-  [class.d-flex]="parentData &&  (!config || (config.input && config.input==='textarea')) ">
+  [class.flex-column]="inputType==='textarea'"
+  [class.d-flex]=" inputType==='textarea'">
   <div class="form-group  p-0 m-0 row">
     <label for="{{key}}" class="flex-shrink-1 col-4 col-form-label" style="    white-space: nowrap;"
-      *ngIf="showLabel(config)">{{key}}</label>
-    <div class="col" *ngIf="!checkbox()">
-      <input [type]="config.input" class="form-control h6" *ngIf="isTextInput()" [(ngModel)]="formValue"
+      *ngIf="showLabel(config)">{{label}}</label>
+    <div class="col" *ngIf="inputType!=='checkbox'">
+      <input [type]="config.input" class="form-control h6" *ngIf="inputType==='text'" [(ngModel)]="formValue"
         placeholder="" />
 
-      <input type="text" *ngIf="isListInput()" placeholder="Pick one" aria-label="Number" matInput class="m-2"
+      <input type="text" *ngIf="inputType==='list'" placeholder="Pick one" aria-label="Number" matInput class="m-2"
         [(ngModel)]="formValue" [matAutocomplete]="auto">
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let option of config.listOptions" [value]="option">
@@ -17,11 +17,12 @@
         </mat-option>
       </mat-autocomplete>
     </div>
-    <div class="col" *ngIf="checkbox()">
-      <input type="checkbox" class="p-2 m-2" [(ngModel)]="formValue"/>
+    <div class="col" *ngIf="inputType==='checkbox'">
+      <input type="checkbox" class="p-2 m-2" [(ngModel)]="formValue" />
 
     </div>
   </div>
-  <textarea class=" col  h6  h-100" *ngIf="parentData &&  (!config || (config.input && config.input==='textarea')) "
-    [(ngModel)]="formValue" placeholder=""></textarea>
+  <textarea class=" col  h6  p-0 m-0 h-100"
+    *ngIf="inputType==='textarea'" [(ngModel)]="formValue"
+    placeholder=""></textarea>
 </div>

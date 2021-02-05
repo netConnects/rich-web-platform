@@ -22,6 +22,7 @@ import { ValueWrapperComponent } from './value-wrapper/value-wrapper.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { JsonUiDesignerComponent } from './json-ui-designer/json-ui-designer.component';
 @NgModule({
   declarations: [
     Json2crudComponent,
@@ -29,7 +30,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ObjectElementComponent,
     ValueElementComponent,
     RemoveWrapperDirective,
-    ValueWrapperComponent
+    ValueWrapperComponent,
+    JsonUiDesignerComponent
 
   ],
   imports: [

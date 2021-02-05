@@ -24,30 +24,49 @@ export class ValueElementComponent extends JsonNode<ValueElementComponent> imple
     return this.parentData[this.key];
   }
 
+  label = '';
+
   @Input()
   key: string;
   @Input()
   config: JsonNodeConfig;
+  inputType = '';
   @Input()
   parentData = {};
   handler: JsonNodeHandler<ValueElementComponent> = new JsonNodeHandler(this, this.resolver, this.entry);
   checkbox(): boolean {
-    return this.config && this.config.input && this.config.input === 'checkbox';
+    return (typeof this.formValue === 'boolean') || (this.config && this.config.input && this.config.input === 'checkbox');
   }
   ngOnInit(): void {
 
     this.handler = new JsonNodeHandler(this, this.resolver, this.entry);
-    this.el.nativeElement.className = this.el.nativeElement.className + ' row';
+    this.el.nativeElement.className = this.el.nativeElement.className + ' row ';
+    this.label = this.key;
+    if (this.key && !this.key.includes(' ')) {
+      this.label = this.label.replace(/([A-Z])/g, ' $1');
+      this.label = this.label.replace(/^(.)/g, x => x[0].toUpperCase());
+    }
+    if (this.checkbox()) {
+      this.inputType = 'checkbox';
+    } else if (this.isTextArea()) {
+      this.inputType = 'textarea';
+    } else if (this.isListInput()) {
+      this.inputType = 'list';
+    } else {
+      this.inputType = 'text';
+    }
   }
-
+  isTextArea(): boolean {
+    return this.parentData && ((this.config) && (this.config.input === 'textarea'));
+  }
   isTextInput(): boolean {
     return this.parentData && (!this.config ||
       (!this.config.input || (this.config.input === '' || this.config.input === 'text'))
-    ) && !(this.config.listOptions && this.config.listOptions.length > 0);
+    );
   }
 
   isListInput(): boolean {
-    return (this.config.listOptions && this.config.listOptions.length > 0);
+    return !!this.config.listOptions;
   }
 
 }

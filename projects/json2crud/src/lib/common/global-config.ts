@@ -11,7 +11,10 @@ export class ChangeTracker {
 
 }
 
-export class JsonNodeConfig {
+
+
+export class NodeConfig {
+
   key = false;
   input: [] | {} | 'text' | 'textarea' | 'checkbox' | 'datetime' | 'select' | 'custom' = 'text';
   listOptions = [];
@@ -26,8 +29,11 @@ export class JsonNodeConfig {
   class = '';
   compact = false;
   expand = false;
-}
 
+}
+export class JsonNodeConfig extends NodeConfig {
+  node: NodeConfig = new JsonNodeConfig();
+}
 export class CustomEditor {
   name = '';
   icon = '';
@@ -38,4 +44,9 @@ export class PropertyTester {
   isValidToAdd(config): boolean {
     return !config.hidden;
   }
+}
+export class DesignDataInput {
+  node: {
+    dataText: any
+  } = { dataText: '' };
 }

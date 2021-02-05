@@ -1,11 +1,12 @@
 <div class="row m-0 p-0 h-100" [hidden]="removed">
 
 
-  <mat-expansion-panel [expanded]="true" [togglePosition]="true" class="pr-0 mt-0 w-100 h-100 d-flex flex-column" [class.striped]="index%2">
+  <mat-expansion-panel [expanded]="true" [togglePosition]="true" class="pr-0 mt-0 w-100 h-100 d-flex flex-column"
+    [class.striped]="index%2">
 
-    <mat-expansion-panel-header *ngIf="show(config['header'])">
+    <mat-expansion-panel-header *ngIf="!config || show(config['header'])">
       <mat-panel-title class="pr-0 pl-5">
-        {{title}}
+        {{title?title:key}}
       </mat-panel-title>
     </mat-expansion-panel-header>
 
@@ -26,8 +27,8 @@
     <mat-menu #menu="matMenu" class="p-0 m-0">
       <button (click)="clone()" mat-menu-item class="py-0 my-0">clone</button>
       <button mat-menu-item (click)="remove()" class="py-0 my-0">Delete</button>
-      <button mat-menu-item class="py-0 my-0 ">add Property</button>
-      <button mat-menu-item class="py-0 my-0 ">Custom Edit</button>
+      <button mat-menu-item class="py-0 my-0 " (click)="moveUp()">Move Up</button>
+      <button mat-menu-item class="py-0 my-0 "(click)="moveDown()">Move Down</button>
       <d-ng-rating [size]="5"></d-ng-rating>
     </mat-menu>
   </mat-expansion-panel>

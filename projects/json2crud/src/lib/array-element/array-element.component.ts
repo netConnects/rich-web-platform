@@ -22,7 +22,10 @@ export class ArrayElementComponent extends JsonNode<ArrayElementComponent> imple
   ngOnDestroy(): void {
     this.cloner.unsubscribe();
   }
-
+  parseData(): void {
+    //this.handler.handleValue(this.key, this.parentData, this.JSON_DATA, this.config, this.globalConfig);
+    this.ngOnInit();
+  }
 
   ngOnInit(): void {
     this.handler = new JsonNodeHandler(this, this.resolver, this.entry);
@@ -35,7 +38,7 @@ export class ArrayElementComponent extends JsonNode<ArrayElementComponent> imple
 
   private handleNewNodes(): void {
     this.childrens.forEach(<T extends JsonNode<T>>(node: JsonNode<T>, i) => {
-      this.handler.handleNewNode<T>(this, node, i);
+      this.componentRefChildrens.push(this.handler.handleNewNode<T>(this, node, i));
     });
     this.cloner.subscribe(this.handler.clone(this.parent));
   }

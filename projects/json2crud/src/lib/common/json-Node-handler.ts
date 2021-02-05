@@ -2,7 +2,7 @@ import { ComponentFactory, ComponentFactoryResolver, ComponentRef, ViewContainer
 import { ArrayElementComponent } from '../array-element/array-element.component';
 import { ObjectElementComponent } from '../object-element/object-element.component';
 import { ValueElementComponent } from '../value-element/value-element.component';
-import { GlobalConfig } from './global-config';
+import { GlobalConfig, JsonNodeConfig, NodeConfig } from './global-config';
 import { JsonNode } from './json-node';
 
 export class JsonNodeHandler<T> {
@@ -74,7 +74,8 @@ export class JsonNodeHandler<T> {
     };
   }
 
-  handleValue<M extends JsonNode<M>>(key: string, parentData: any, jsonData: any, config: any, globalConfig: GlobalConfig): JsonNode<M> {
+  handleValue<M extends JsonNode<M>>(key: string, parentData: any, jsonData: any,
+                                     config: NodeConfig, globalConfig: GlobalConfig): JsonNode<M> {
     let childNode: JsonNode<any>;
     if (jsonData instanceof Array) {
       childNode = new JsonNode<ArrayElementComponent>();
@@ -92,7 +93,7 @@ export class JsonNodeHandler<T> {
   }
 
   private decorateChild<N extends JsonNode<N>>(childNode: JsonNode<N>, config: any, parentData: any, jsonData: any, key: string,
-    globalConfig: GlobalConfig): void {
+                                               globalConfig: GlobalConfig): void {
     childNode.parentData = parentData;
     childNode.config = config;
     childNode.jsonData = jsonData;

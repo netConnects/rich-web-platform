@@ -5,6 +5,7 @@ import {
   HostBinding,
   Input, OnInit, Output, ViewChild, ViewContainerRef, ViewEncapsulation
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { GlobalConfig, JsonNodeConfig } from './common/global-config';
 import { JsonNode } from './common/json-node';
@@ -33,17 +34,21 @@ export class Json2crudComponent extends JsonNode<Json2crudComponent> implements 
 
   searchText = '';
   globalConfig: GlobalConfig = new GlobalConfig();
-  componentRefChildrens: ComponentRef<any>[] = [];
   handler: JsonNodeHandler<Json2crudComponent> = new JsonNodeHandler(this, this.resolver, this.entry);
-
+  designWindow: any;
   @ViewChild('formContainer', { read: ViewContainerRef }) entry: ViewContainerRef;
 
-  constructor(private httpClient: HttpClient, private resolver: ComponentFactoryResolver) {
+  constructor(public dialog: MatDialog, private httpClient: HttpClient, private resolver: ComponentFactoryResolver) {
     super();
   }
-  design(): void {
 
+  design(template: any): void {
+    const dialogRef = this.dialog.open(template, { width: '100%', height: '100%' });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
+
   toggleOpen(bubble = true): void {
     if (this.closingDirection) {
       this.closingDirection = '';
@@ -55,7 +60,6 @@ export class Json2crudComponent extends JsonNode<Json2crudComponent> implements 
       }
     }
     if (bubble) {
-
       this.closed.emit(this.closingDirection);
     }
   }
@@ -73,7 +77,7 @@ export class Json2crudComponent extends JsonNode<Json2crudComponent> implements 
       this.parseData();
     }
   }
-  private parseData(): void {
+  parseData(): void {
     this.handler = new JsonNodeHandler(this, this.resolver, this.entry);
     this.jsonData = ``;
 
@@ -101,38 +105,21 @@ export class Json2crudComponent extends JsonNode<Json2crudComponent> implements 
     this.handleEdit();
   }
   private handleEdit(): void {
-    this.globalConfig.isEditing = !((this.show(this.config['Edit'])) || this.config['Edit'].enabled);
+    this.globalConfig.isEditing = !((this.show(this.config.node['Edit'])) || this.config.node['Edit'].enabled);
   }
 
   getText(name: string): string {
-    return this.config[name] && this.config[name].label ? this.config[name].label : name;
+    return this.config.node[name] && this.config.node[name].label ? this.config.node[name].label : name;
   }
 
-  reset(force = false): void {
-
-    if (this.globalConfig.isEditing || force) {
-      this.globalConfig.isEditing = false;
-      this.componentRefChildrens.forEach(ref => {
-        ref.destroy();
-      });
-      delete this.childrens;
-      delete this.componentRefChildrens;
-      this.componentRefChildrens = [];
-      this.childrens = [];
-      this.parseData();
-    }
-  }
-
-  private handleData(result: {}): void {
-    this.handler.handleValue('', result, result, this.config, this.globalConfig);
+  handleData(result: any): void {
+    this.handler.handleValue('', result, result.node, this.config.node, this.globalConfig);
     this.childrens.forEach(<T extends JsonNode<T>>(node: JsonNode<T>, i: number) => {
       this.componentRefChildrens.push(this.handler.handleNewNode<T>(this, node, i));
     });
-
   }
+
 
   ngOnInit(): void {
-
   }
-
 }

@@ -43,12 +43,27 @@ export class ObjectElementComponent extends JsonNode<ObjectElementComponent> imp
     this.handleNewNodes();
 
   }
-
+  moveUp(): void {
+    if (this.index) {
+      const d = this.parent.JSON_DATA[this.index - 1];
+      this.parent.JSON_DATA[this.index - 1] = this.JSON_DATA;
+      this.parent.JSON_DATA[this.index] = d;
+      this.parent.reset();
+    }
+  }
+  moveDown(): void {
+    if (this.index < this.parent.JSON_DATA.length - 1) {
+      const d = this.parent.JSON_DATA[this.index + 1];
+      this.parent.JSON_DATA[this.index + 1] = this.JSON_DATA;
+      this.parent.JSON_DATA[this.index] = d;
+      this.parent.reset();
+    }
+  }
   private handleNewNodes(): void {
 
     this.childrens.forEach(<T extends JsonNode<T>>(node: JsonNode<T>, i) => {
       if (this.tester.isValidToAdd(node.config)) {
-        const component = this.handler.handleNewNode<T>(this, node, i);
+        this.componentRefChildrens.push(this.handler.handleNewNode<T>(this, node, i));
       }
     });
 

@@ -1,37 +1,45 @@
-<div class=" y-close panel-header  h-100" [class.d-none]="closingDirection!=='y'" >
-  <h6 style=" text-orientation: sideways-right;  writing-mode: vertical-lr; cursor: pointer; " (click)="toggleOpen()" class="p-0 m-2">
+<div class=" y-close panel-header  h-100" [class.d-none]="closingDirection!=='y'">
+  <h6 style=" text-orientation: sideways-right;  writing-mode: vertical-lr; cursor: pointer; " (click)="toggleOpen()"
+    class="p-0 m-2">
     {{title}}</h6>
 </div>
 <div [class.d-none]="closingDirection!==''" class="d-flex flex-column  w-100 parent h-100 p-0 m-0 my-0 p-0">
 
   <div class=" panel-header row m-0 p-1">
     <button mat-button class="mx-1 float-right" [matMenuTriggerFor]="homeMenu"
-      *ngIf=" show(config['menu']) && closingDirection==''" type="button">
+      *ngIf="config &&  show(config.node['menu']) && closingDirection==''" type="button">
       <mat-icon class="mb-3">menu</mat-icon>
     </button>
     <mat-menu #homeMenu="matMenu" class="p-0 m-0">
-      <button mat-menu-item class="py-0 my-0 " (click)="design()">
+      <button mat-menu-item class="py-0 my-0 " (click)="design(designWindow)">
         <mat-icon class="mb-3">design_services</mat-icon>
         Design
       </button>
 
     </mat-menu>
+    <ng-template #designWindow>
+      <lib-json-ui-designer [data]="loadData" [config]='config'>
+
+      </lib-json-ui-designer>
+    </ng-template>
     <div class="col ml-1 mt-1 text-nowrap" *ngIf="closingDirection!='y'">
-      <h6 style="   cursor: pointer; " (click)="toggleOpen()"  >{{title}}</h6>
+      <h6 style="   cursor: pointer; " (click)="toggleOpen()">{{title}}</h6>
     </div>
     <div class=" p-0 m-0 float-right " *ngIf="closingDirection==''">
 
       <div class="text-nowrap float-left">
         <button mat-raised-button (click)="globalConfig.isEditing=true"
-          *ngIf="!globalConfig.isEditing && show(config['Edit'])" class="mx-2 float-right controls">Edit</button>
-        <button mat-raised-button *ngIf="(globalConfig.isEditing || !show(config['Edit']) ) && show(config['Save'])"
+          *ngIf="!globalConfig.isEditing &&config&& show(config.node['Edit'])"
+          class="mx-2 float-right controls">Edit</button>
+        <button mat-raised-button
+          *ngIf="(globalConfig.isEditing || (config &&!show(config.node['Edit']))) && show(config.node['Save'])"
           (click)="saveData()" class="mx-2 controls float-right">{{getText('Save')}}</button>
-        <button mat-raised-button (click)="reset()" *ngIf=" show(config['Reset'])"
+        <button mat-raised-button (click)="reset()" *ngIf=" config  && show(config.node['Reset'])"
           class="mx-2 float-right controls">reset</button>
       </div>
     </div>
   </div>
-  <div *ngIf="show(config['filter']) && closingDirection==''" class=" d-flex controls row ml-3 mb-1">
+  <div *ngIf="config && show(config.node['filter']) && closingDirection==''" class=" d-flex controls row ml-3 mb-1">
     <div class="input-group ">
       <input mat-text class="form-control ml-2 my-0   " type="text" name="search" [(ngModel)]="searchText"
         autocomplete="off" placeholder="Start searching ">

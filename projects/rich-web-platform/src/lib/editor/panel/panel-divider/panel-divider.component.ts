@@ -13,7 +13,8 @@ export class PanelDividerComponent implements OnInit, AfterViewInit, IDivider {
   @Input() parent?: IPanel;
   @Input() id = '';
   ENABLED = true;
-  @Input() get enabled(): boolean {
+  @Input()
+  get enabled(): boolean {
     return this.ENABLED;
   }
   set enabled(e: boolean) {

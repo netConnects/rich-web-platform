@@ -1,33 +1,39 @@
-[
-  {
-    "language": "Java",
-    "complete": false,
-    "replace": [
-      {
-        "name": "sim",
-        "find": "fin",
-        "replace": "rep"
-      },
-      {
-        "name": "sim1",
-        "find": "fin2",
-        "replace": "rep2"
-      }
-    ],
-    "parsers": [
-      {
-        "matcher": ""
-      }
-    ]
-  },
-  {
-    "language": "Typescript",
-    "replace": [],
-    "parsers": [
-      {
-        "name": "simple",
-        "matcher": ""
-      }
-    ]
-  }
-]
+{
+  "node": [
+    {
+      "language": "Java",
+      "complete": false,
+      "Sample file": "Sample.java",
+      "FileType": "java",
+      "replace": [
+        {
+          "name": "sim",
+          "find": "fin",
+          "replace": "rep"
+        },
+        {
+          "name": "sim1",
+          "find": "fin2",
+          "replace": "rep2"
+        }
+      ],
+      "parsers": [
+        {
+          "matcher": ""
+        }
+      ]
+    },
+    {
+      "language": "Typescript",
+      "Sample file": "sample.ts",
+      "File type": "ts",
+      "replace": [],
+      "parsers": [
+        {
+          "name": "simple",
+          "matcher": ""
+        }
+      ]
+    }
+  ]
+}

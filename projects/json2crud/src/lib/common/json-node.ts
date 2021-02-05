@@ -1,5 +1,5 @@
-import { Type, ViewContainerRef } from '@angular/core';
-import { GlobalConfig, JsonNodeConfig } from './global-config';
+import { Type, ViewContainerRef, ComponentRef } from '@angular/core';
+import { GlobalConfig, JsonNodeConfig, NodeConfig } from './global-config';
 import { JsonNodeHandler } from './json-Node-handler';
 
 export class JsonNode<T> {
@@ -11,7 +11,7 @@ export class JsonNode<T> {
   JSON_DATA: any;
   globalConfig: GlobalConfig;
   parentData: any;
-
+  componentRefChildrens: ComponentRef<any>[] = [];
   get jsonData(): any {
     return this.JSON_DATA;
   }
@@ -31,10 +31,10 @@ export class JsonNode<T> {
   handler: JsonNodeHandler<T>;
   classes: Map<string, string> = new Map();
   index: number;
-  show(config: JsonNodeConfig): boolean {
+  show(config: NodeConfig): boolean {
     return !config || !config.hidden;
   }
-  showLabel(config: JsonNodeConfig): boolean {
+  showLabel(config: NodeConfig): boolean {
     return (!config || config.label !== '');
   }
   findKey(): void {
@@ -45,10 +45,27 @@ export class JsonNode<T> {
     });
   }
 
+
+  reset(force = false): void {
+    if (this.globalConfig.isEditing || force) {
+
+      this.componentRefChildrens.forEach(ref => {
+        ref.destroy();
+      });
+      delete this.childrens;
+      delete this.componentRefChildrens;
+      this.componentRefChildrens = [];
+      this.childrens = [];
+      this.parseData();
+    }
+  }
+
   getChildren(): JsonNode<any>[] {
     return this.childrens;
   }
-
+  parseData(): void {
+    //override
+  }
   addJsonNode<N extends JsonNode<N>>(node: JsonNode<N>): void {
     if (node.config && node.config.key) {
       this.title = this.jsonData[node.key];
