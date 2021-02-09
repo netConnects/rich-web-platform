@@ -23,16 +23,16 @@ export class ArrayElementComponent extends JsonNode<ArrayElementComponent> imple
     this.cloner.unsubscribe();
   }
   parseData(): void {
-    //this.handler.handleValue(this.key, this.parentData, this.JSON_DATA, this.config, this.globalConfig);
     this.ngOnInit();
   }
 
   ngOnInit(): void {
     this.handler = new JsonNodeHandler(this, this.resolver, this.entry);
     this.handler.handleArray(this.key, this.jsonData,
-      this.config && this.config[this.key] ? this.config[this.key] : this.config, this.globalConfig);
+      this.config[this.key] || this.config, this.globalConfig);
     this.handleNewNodes();
     this.childrenKeyType = ArrayElementComponent.KEY_MAP.get(this.key);
+    this.setLabel();
 
   }
 

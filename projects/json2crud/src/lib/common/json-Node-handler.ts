@@ -12,13 +12,13 @@ export class JsonNodeHandler<T> {
     let returnValue = {};
     jsonData.forEach(data => {
       returnValue = { ...returnValue, ...data };
-      this.handleValue(key, jsonData, data, config && config[key] ? config[key] : config, globalConfig);
+      this.handleValue(key, jsonData, data, config[key] || config, globalConfig);
     });
     return returnValue;
   }
   handleObject(key: string, jsonData: {}, config: any, globalConfig: GlobalConfig): void {
     Object.keys(jsonData).forEach(data => {
-      this.handleValue(data, jsonData, jsonData[data], config && config[data] ? config[data] : config, globalConfig);
+      this.handleValue(data, jsonData, jsonData[data], config[data] || config, globalConfig);
     });
   }
   constructor(private jsonNode: JsonNode<T>, private resolver: ComponentFactoryResolver, private entry: ViewContainerRef) {
@@ -58,7 +58,7 @@ export class JsonNodeHandler<T> {
 
   }
 
-  private addValuesToMap<N extends JsonNode<N>>(node: JsonNode<any>, map: {}) {
+  private addValuesToMap<N extends JsonNode<N>>(node: JsonNode<any>, map: {}): void {
     if (node.type === ObjectElementComponent) {
       Object.keys(node.jsonData).forEach(key => {
         map[key] = node.jsonData[key];
@@ -66,16 +66,25 @@ export class JsonNodeHandler<T> {
     }
   }
 
-  clone(component: any): (cloner) => void {
+  clone<C extends JsonNode<T>>(component: C): (cloner) => void {
     return cloner => {
-      component.childrens.push(cloner);
+      const clonedIndex = cloner.index;
+      component.childrens.splice(cloner.index, 0, cloner);
+      component.JSON_DATA.splice(cloner.index, 0, { ...cloner.JSON_DATA });
+      component.reset();
+      setTimeout(() => {
+        component.childrens[clonedIndex].expandMe.value = false;
+        setTimeout(() => {
+          component.childrens[clonedIndex].expandMe.value = true;
 
-      this.handleNewNode(component, cloner, component.childrens.length - 1, true);
+        }, 400);
+      }, 200);
+      //this.handleNewNode(component, cloner, cloner.index + 1, true);
     };
   }
 
-  handleValue<M extends JsonNode<M>>(key: string, parentData: any, jsonData: any,
-                                     config: NodeConfig, globalConfig: GlobalConfig): JsonNode<M> {
+  handleValue<M extends JsonNode<M>>(key: string, parentData: any, jsonData: any, config: JsonNodeConfig,
+    globalConfig: GlobalConfig): JsonNode<M> {
     let childNode: JsonNode<any>;
     if (jsonData instanceof Array) {
       childNode = new JsonNode<ArrayElementComponent>();
@@ -87,17 +96,14 @@ export class JsonNodeHandler<T> {
       childNode = new JsonNode<ValueElementComponent>();
       childNode.type = ValueElementComponent;
     }
-    this.decorateChild(childNode, config, parentData, jsonData, key, globalConfig);
-    this.jsonNode.addJsonNode(childNode);
-    return childNode;
-  }
-
-  private decorateChild<N extends JsonNode<N>>(childNode: JsonNode<N>, config: any, parentData: any, jsonData: any, key: string,
-                                               globalConfig: GlobalConfig): void {
     childNode.parentData = parentData;
     childNode.config = config;
     childNode.jsonData = jsonData;
     childNode.key = key;
     childNode.globalConfig = globalConfig;
+    this.jsonNode.addJsonNode(childNode);
+    return childNode;
   }
+
+
 }

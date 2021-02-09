@@ -23,7 +23,10 @@ export class AppComponent implements OnInit {
   saveUrl = '';
   configOutputJson = {
     node: {
-
+      clonable: false,
+      deletable: false,
+      rateble: false,
+      addProperties: false,
       filter: {
         hidden: true
       },
@@ -38,10 +41,7 @@ export class AppComponent implements OnInit {
         hidden: true
       },
       menu: { hidden: true },
-      clonable: false,
-      deletable: false,
-      rateble: false,
-      addProperties: false,
+
       outputText: {
         input: 'textarea',
         label: '',
@@ -114,6 +114,8 @@ export class AppComponent implements OnInit {
 
     {
       node: {
+        addOrRemove: true,
+        input: 'switch',
         menu: {
           hidden: false
         },
@@ -126,8 +128,10 @@ export class AppComponent implements OnInit {
           input: 'text'
         },
         language: { key: true, input: 'text' },
-        addOrRemove: true,
-        input: 'switch',
+        complete: {
+          compact: true,
+          expand: true
+        },
         replace: {
           name: {
             key: true

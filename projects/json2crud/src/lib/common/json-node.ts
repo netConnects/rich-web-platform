@@ -12,9 +12,12 @@ export class JsonNode<T> {
   globalConfig: GlobalConfig;
   parentData: any;
   componentRefChildrens: ComponentRef<any>[] = [];
+  label = '';
+  expandMe = { value: true };
   get jsonData(): any {
     return this.JSON_DATA;
   }
+
   set jsonData(data: any) {
     this.JSON_DATA = data;
     if (this.parent) {
@@ -45,7 +48,13 @@ export class JsonNode<T> {
     });
   }
 
-
+  setLabel(): void {
+    this.label = this.key;
+    if (this.key && !this.key.includes(' ')) {
+      this.label = this.label.replace(/([A-Z])/g, ' $1');
+      this.label = this.label.replace(/^(.)/g, x => x[0].toUpperCase());
+    }
+  }
   reset(force = false): void {
     if (this.globalConfig.isEditing || force) {
 
@@ -64,7 +73,7 @@ export class JsonNode<T> {
     return this.childrens;
   }
   parseData(): void {
-    //override
+    // override
   }
   addJsonNode<N extends JsonNode<N>>(node: JsonNode<N>): void {
     if (node.config && node.config.key) {

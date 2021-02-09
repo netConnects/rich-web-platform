@@ -5,7 +5,7 @@
       "complete": false,
       "Sample file": "Sample.java",
       "FileType": "java",
-      "replace": [
+      "findAndReplace": [
         {
           "name": "sim",
           "find": "fin",
@@ -27,7 +27,7 @@
       "language": "Typescript",
       "Sample file": "sample.ts",
       "File type": "ts",
-      "replace": [],
+      "findAndReplace": [],
       "parsers": [
         {
           "name": "simple",

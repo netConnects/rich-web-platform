@@ -1,5 +1,5 @@
 <div [class.striped]="index%2" removeWrapper="{{config.expand}}" [style]="config['style']" [compact]="config.compact"
-  *ngIf="show(config)" class="col {{config.class}}"
+  *ngIf="show(config)" class="col border {{config.class}}"
   [class.flex-column]="inputType==='textarea'"
   [class.d-flex]=" inputType==='textarea'">
   <div class="form-group  p-0 m-0 row">
@@ -19,10 +19,9 @@
     </div>
     <div class="col" *ngIf="inputType==='checkbox'">
       <input type="checkbox" class="p-2 m-2" [(ngModel)]="formValue" />
-
     </div>
   </div>
-  <textarea class=" col  h6  p-0 m-0 h-100"
+  <textarea class=" col h6 p-0 m-0 h-100"
     *ngIf="inputType==='textarea'" [(ngModel)]="formValue"
     placeholder=""></textarea>
 </div>

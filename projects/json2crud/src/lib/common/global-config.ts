@@ -32,7 +32,7 @@ export class NodeConfig {
 
 }
 export class JsonNodeConfig extends NodeConfig {
-  node: NodeConfig = new JsonNodeConfig();
+  node: JsonNodeConfig = new JsonNodeConfig();
 }
 export class CustomEditor {
   name = '';

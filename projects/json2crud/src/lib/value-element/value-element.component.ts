@@ -24,7 +24,6 @@ export class ValueElementComponent extends JsonNode<ValueElementComponent> imple
     return this.parentData[this.key];
   }
 
-  label = '';
 
   @Input()
   key: string;
@@ -41,11 +40,7 @@ export class ValueElementComponent extends JsonNode<ValueElementComponent> imple
 
     this.handler = new JsonNodeHandler(this, this.resolver, this.entry);
     this.el.nativeElement.className = this.el.nativeElement.className + ' row ';
-    this.label = this.key;
-    if (this.key && !this.key.includes(' ')) {
-      this.label = this.label.replace(/([A-Z])/g, ' $1');
-      this.label = this.label.replace(/^(.)/g, x => x[0].toUpperCase());
-    }
+    this.setLabel();
     if (this.checkbox()) {
       this.inputType = 'checkbox';
     } else if (this.isTextArea()) {

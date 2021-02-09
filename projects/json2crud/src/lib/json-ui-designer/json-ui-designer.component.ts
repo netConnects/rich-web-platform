@@ -9,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class JsonUiDesignerComponent implements OnInit {
 
-  @Input() config = {};
+  @Input() config = { node: {} };
   @Input() data: any;
   reset: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   justSaved = false;
@@ -46,16 +46,13 @@ export class JsonUiDesignerComponent implements OnInit {
   configData = {
     ...this.config
   };
-  configDataConfig = {};
+  configDataConfig = { node: {} };
 
   ngOnInit(): void {
     this.dataInput.node.dataText = this.data;
-    this.configDataConfig = {
-      node: {
-        config: this.config
-      }
-    };
-    this.configData['node'] = this.config;
+    this.configDataConfig.node = this.config.node;
+
+    this.configData.node = this.config.node;
   }
 
   loadJson(data): void {

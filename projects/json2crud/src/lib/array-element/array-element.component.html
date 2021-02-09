@@ -2,7 +2,7 @@
   <div class="window">
     <div class="panel">
       <mat-card *ngIf="key" style="z-index: 20px;" class="d-flex flex-center flex-row justify-content-between p-2">
-        <div class="  py-2 pl-2"> {{key}} </div> <button title="Add item to the {{key}}" autoClose="outside"
+        <div class="  py-2 pl-2"> {{label}} </div> <button title="Add item to the {{key}}" autoClose="outside"
           triggers="manual" #p="ngbPopover" *ngIf="globalConfig.isEditing" [ngbPopover]="popContent"
           [popoverTitle]="popTitle" (click)="open(p)" container="body" placement="left" class="controls mt-0 mb-2 mx-2
           mat-focus-indicator float-right controls mat-raised-button mat-button-base

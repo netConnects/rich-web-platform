@@ -13,6 +13,7 @@ export class ObjectElementComponent extends JsonNode<ObjectElementComponent> imp
   @ViewChild('objectContainer', { read: ViewContainerRef, static: true }) entry: ViewContainerRef;
   handler: JsonNodeHandler<ObjectElementComponent> = new JsonNodeHandler(this, this.resolver, this.entry);
   tester: PropertyTester = new PropertyTester();
+
   constructor(private resolver: ComponentFactoryResolver) {
     super();
   }
@@ -22,15 +23,21 @@ export class ObjectElementComponent extends JsonNode<ObjectElementComponent> imp
   }
 
   remove(): void {
+    // this.entry.remove(this.entry.indexOf(this.entry.element.nativeElement));
     this.removed = true;
+    console.log('pre remove: ' + this.parent.JSON_DATA);
+    console.log('pre remove: ch:' + this.parent.childrens);
     this.parent.removeThis(this);
+    this.parent.reset(true);
+    console.log('post remove: ' + this.parent.JSON_DATA);
+    console.log('post remove: ch:' + this.parent.childrens);
+
+
   }
 
   ngOnInit(): void {
     this.handler = new JsonNodeHandler(this, this.resolver, this.entry);
-    this.handler.handleObject(this.key, this.jsonData,
-      this.config && this.config[this.key] ? this.config[this.key] : this.config, this.globalConfig);
-
+    this.handler.handleObject(this.key, this.jsonData, this.config[this.key] || this.config, this.globalConfig);
     if (!this.title) {
       Object.keys(this.config).forEach(element => {
         if (this.config[element].key) {
@@ -39,10 +46,10 @@ export class ObjectElementComponent extends JsonNode<ObjectElementComponent> imp
         }
       });
     }
-
+    this.setLabel();
     this.handleNewNodes();
-
   }
+
   moveUp(): void {
     if (this.index) {
       const d = this.parent.JSON_DATA[this.index - 1];

@@ -80,9 +80,7 @@ export class Json2crudComponent extends JsonNode<Json2crudComponent> implements 
   parseData(): void {
     this.handler = new JsonNodeHandler(this, this.resolver, this.entry);
     this.jsonData = ``;
-
     try {
-
       if (this.loadData && (typeof this.loadData === 'string')) {
         this.jsonData = JSON.parse(this.loadData + '');
       } else {
@@ -104,12 +102,13 @@ export class Json2crudComponent extends JsonNode<Json2crudComponent> implements 
   loadConfig(): void {
     this.handleEdit();
   }
+
   private handleEdit(): void {
     this.globalConfig.isEditing = !((this.show(this.config.node['Edit'])) || this.config.node['Edit'].enabled);
   }
 
   getText(name: string): string {
-    return this.config.node[name] && this.config.node[name].label ? this.config.node[name].label : name;
+    return this.config.node[name]?.label || name;
   }
 
   handleData(result: any): void {
@@ -118,7 +117,6 @@ export class Json2crudComponent extends JsonNode<Json2crudComponent> implements 
       this.componentRefChildrens.push(this.handler.handleNewNode<T>(this, node, i));
     });
   }
-
 
   ngOnInit(): void {
   }
