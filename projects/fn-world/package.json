@@ -1,0 +1,31 @@
+{
+  "name": "fn-world",
+  "description": "this is used to develop the forms for json",
+  "version": "0.0.5",
+  "scripts": {
+    "build": " echo on  && (for %I in (package.json README.md) do copy %I ..\\..\\dist\\fn-world\\) && tsc",
+    "publish": "cd ..\\..\\dist\\fn-world\\ && npm publish"
+  },
+  "main": "public-api.ts",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "author": {
+    "email": "senthurai@gmail.com",
+    "name": "tin tin",
+    "url": "http://fn-world.netconnects.in"
+  },
+  "homepage": "http://fn-world.netconnects.in",
+  "readme": "./README.md",
+  "keywords": [
+    "function if",
+    "fnworld",
+    "fn-world",
+    "fn",
+    "world"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/netConnects/rich-web-platform.git"
+  }
+}

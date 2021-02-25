@@ -1,4 +1,5 @@
 import { Type, ViewContainerRef, ComponentRef } from '@angular/core';
+import { parse } from '@fortawesome/fontawesome-svg-core';
 import { GlobalConfig, JsonNodeConfig, NodeConfig } from './global-config';
 import { JsonNodeHandler } from './json-Node-handler';
 
@@ -38,7 +39,7 @@ export class JsonNode<T> {
     return !config || !config.hidden;
   }
   showLabel(config: NodeConfig): boolean {
-    return (!config || config.label !== '');
+    return (!config || config.label !== '') && isNaN(Number.parseInt(this.key, 10));
   }
   findKey(): void {
     this.childrens.forEach(node => {
@@ -50,7 +51,7 @@ export class JsonNode<T> {
 
   setLabel(): void {
     this.label = this.key;
-    if (this.key && !this.key.includes(' ')) {
+    if (this.key && typeof this.key === 'string' && !this.key.includes(' ')) {
       this.label = this.label.replace(/([A-Z])/g, ' $1');
       this.label = this.label.replace(/^(.)/g, x => x[0].toUpperCase());
     }

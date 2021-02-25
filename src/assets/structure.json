@@ -2,36 +2,133 @@
   "node": [
     {
       "language": "Java",
-      "complete": false,
-      "Sample file": "Sample.java",
-      "FileType": "java",
-      "findAndReplace": [
+      "replace": [
         {
-          "name": "sim",
-          "find": "fin",
-          "replace": "rep"
-        },
-        {
-          "name": "sim1",
-          "find": "fin2",
-          "replace": "rep2"
+          "search": "/()/gms",
+          "replace": ""
         }
       ],
       "parsers": [
         {
-          "matcher": ""
+          "name": "CommentParser",
+          "regex": "/\\s*?(\\/\\/.*?$)|(\\/\\*.*?\\*\\/)/smy",
+          "parser": [
+            "LineComment",
+            "BlockComment"
+          ],
+          "writer": "$1$2",
+          "offsetRegex": "",
+          "childNodesTypes": [],
+          "replace": [
+            {
+              "search": "/()/gms",
+              "replace": ""
+            }
+          ]
+        },
+        {
+          "name": "ImportParser",
+          "regex": "/^\\s*?(?<!=[\\w])(import static|import) (.*?)\\.([A-Z*].*?)((;)|\\.(.*?);)/smy",
+          "parser": [
+            "import_type",
+            "package",
+            "className",
+            "staticMethod"
+          ],
+          "writer": "import $1 $2.$3$4;",
+          "replace": [
+            {
+              "replace": ""
+            }
+          ],
+          "offsetRegex": "",
+          "childNodesTypes": [
+            "",
+            "",
+            ""
+          ],
+          "comments": "writer index starts from 1."
+        },
+        {
+          "name": "CommentParser",
+          "regex": "",
+          "parser": [
+            "",
+            "",
+            ""
+          ],
+          "writer": "",
+          "replace": [
+            {
+              "search": "/(search)/gms",
+              "replace": ""
+            }
+          ],
+          "offsetRegex": "",
+          "childNodesTypes": [
+            "",
+            "",
+            ""
+          ]
         }
       ]
     },
     {
       "language": "Typescript",
-      "Sample file": "sample.ts",
-      "File type": "ts",
-      "findAndReplace": [],
+      "replace": [
+        {
+          "search": "/(search)/gms",
+          "replace": ""
+        }
+      ],
       "parsers": [
         {
-          "name": "simple",
-          "matcher": ""
+          "name": "CommentParser",
+          "regex": "",
+          "parser": [
+            "",
+            "",
+            ""
+          ],
+          "writer": "",
+          "replace": [
+            {
+              "search": "/(search)/gms",
+              "replace": ""
+            }
+          ],
+          "offsetRegex": "",
+          "childNodesTypes": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "name": "CommentParser",
+          "regex": "",
+          "parser": [],
+          "writer": "",
+          "offsetRegex": "",
+          "childNodesTypes": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "name": "CommentParser",
+          "regex": "",
+          "parser": [ ],
+          "writer": "",
+          "replace": [
+            {
+              "search": "/(search)/gms",
+              "replace": ""
+            }
+          ],
+          "offsetRegex": "",
+          "childNodesTypes": [  ]
         }
       ]
     }

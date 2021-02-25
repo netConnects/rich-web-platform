@@ -8,19 +8,21 @@ import { JsonNode } from './json-node';
 export class JsonNodeHandler<T> {
 
 
-  handleArray(key: string, jsonData: any[], config: any, globalConfig: GlobalConfig): {} {
-    let returnValue = {};
-    jsonData.forEach(data => {
-      returnValue = { ...returnValue, ...data };
+  handleArray(key: string, jsonData: any[], config: any, globalConfig: GlobalConfig): void {
+    jsonData.forEach((data, index) => {
+      if (typeof data === 'string' || typeof data === 'number') {
+        key = index + '';
+      }
       this.handleValue(key, jsonData, data, config[key] || config, globalConfig);
     });
-    return returnValue;
   }
+
   handleObject(key: string, jsonData: {}, config: any, globalConfig: GlobalConfig): void {
     Object.keys(jsonData).forEach(data => {
       this.handleValue(data, jsonData, jsonData[data], config[data] || config, globalConfig);
     });
   }
+
   constructor(private jsonNode: JsonNode<T>, private resolver: ComponentFactoryResolver, private entry: ViewContainerRef) {
   }
 
@@ -43,7 +45,7 @@ export class JsonNodeHandler<T> {
     instance.index = i;
     instance.type = node.type;
     instance.parent = parent;
-
+   // instance['el'].className = 'p-0 m-0';
     if (clone) {
       instance.jsonData = JSON.parse(JSON.stringify(node.jsonData));
       parent.jsonData.push(instance.jsonData);
@@ -95,6 +97,7 @@ export class JsonNodeHandler<T> {
     } else {
       childNode = new JsonNode<ValueElementComponent>();
       childNode.type = ValueElementComponent;
+
     }
     childNode.parentData = parentData;
     childNode.config = config;

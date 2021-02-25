@@ -24,12 +24,11 @@
   <div>Add to {{key}}</div>
 </ng-template>
 <ng-template #popContent>
-  <div *ngFor="let item of object.keys(childrenKeyType)">
-    <lib-value-element [key]='item' [parentData]="childrenKeyType" [formValue]='childrenKeyType[item]' [config]='{}'>
-    </lib-value-element>
+  <div class="model">
+    <lib-json2crud [loadData]="{node:childrenKeyType}" [config]="configJson" title="Oops 2 New" class="w-100 h-100"
+      (save)="addInArray($event)">
+    </lib-json2crud>
+    <button mat-raised-button (click)="createWindow.close()" *ngIf=" show(config['Reset'])"
+      class=" m-2 float-right controls mat-focus-indicator  controls float-right mat-raised-button mat-button-base  ">cancel</button>
   </div>
-  <button mat-raised-button (click)="addInArray()" *ngIf=" show(config['Reset'])"
-    class="m-2 float-right controls mat-focus-indicator  controls float-right mat-raised-button mat-button-base ">create</button>
-  <button mat-raised-button (click)="createWindow.close()" *ngIf=" show(config['Reset'])"
-    class="m-2 float-right controls mat-focus-indicator  controls float-right mat-raised-button mat-button-base  ">cancel</button>
 </ng-template>

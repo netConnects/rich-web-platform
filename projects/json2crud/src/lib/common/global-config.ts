@@ -8,13 +8,9 @@ export class GlobalConfig {
 }
 
 export class ChangeTracker {
-
 }
 
-
-
 export class NodeConfig {
-
   key = false;
   input: [] | {} | 'text' | 'textarea' | 'checkbox' | 'datetime' | 'select' | 'custom' = 'text';
   listOptions = [];
@@ -29,22 +25,23 @@ export class NodeConfig {
   class = '';
   compact = false;
   expand = false;
-
 }
+
 export class JsonNodeConfig extends NodeConfig {
   node: JsonNodeConfig = new JsonNodeConfig();
 }
+
 export class CustomEditor {
   name = '';
   icon = '';
   action: EventEmitter<{}>;
 }
-
 export class PropertyTester {
   isValidToAdd(config): boolean {
     return !config.hidden;
   }
 }
+
 export class DesignDataInput {
   node: {
     dataText: any

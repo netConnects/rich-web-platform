@@ -13,7 +13,10 @@ $info: rgb(23, 184, 177);
   flex-direction: column;
   height: 100%;
 }
-
+.popover {
+  min-width: 375px !important;
+  min-height: 450px !important;
+}
 .mat-expansion-panel-content {
   height: 100%;
 }

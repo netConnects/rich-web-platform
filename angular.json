@@ -206,6 +206,46 @@
           }
         }
       }
+    },
+    "fnWorld": {
+      "projectType": "library",
+      "root": "projects/fn-world",
+      "sourceRoot": "projects/fn-world/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/fn-world/tsconfig.lib.json",
+            "project": "projects/fn-world/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/fn-world/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/fn-world/src/test.ts",
+            "tsConfig": "projects/fn-world/tsconfig.spec.json",
+            "karmaConfig": "projects/fn-world/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/fn-world/tsconfig.lib.json",
+              "projects/fn-world/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "rich-web-client"

@@ -27,6 +27,10 @@
       "json2crud": [
         "dist/json2crud/json2crud",
         "dist/json2crud"
+      ],
+      "fn-world": [
+        "dist/fn-world/fn-world",
+        "dist/fn-world"
       ]
     }
   }

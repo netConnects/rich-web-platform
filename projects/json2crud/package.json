@@ -1,6 +1,6 @@
 {
   "name": "json2crud",
-  "version": "0.2.37",
+  "version": "0.2.39",
   "description": "this is used to develop the forms for json",
   "peerDependencies": {
     "@angular/common": "^11.0.5",

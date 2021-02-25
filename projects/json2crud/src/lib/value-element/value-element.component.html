@@ -1,13 +1,18 @@
 <div [class.striped]="index%2" removeWrapper="{{config.expand}}" [style]="config['style']" [compact]="config.compact"
-  *ngIf="show(config)" class="col border {{config.class}}"
-  [class.flex-column]="inputType==='textarea'"
-  [class.d-flex]=" inputType==='textarea'">
+  *ngIf="show(config)" class="col border {{config.class}}" [class.flex-column]="inputType==='textarea'"
+  [class.d-flex]="inputType==='textarea'">
   <div class="form-group  p-0 m-0 row">
+
     <label for="{{key}}" class="flex-shrink-1 col-4 col-form-label" style="    white-space: nowrap;"
       *ngIf="showLabel(config)">{{label}}</label>
+
+
+      <a href="#" (click)="delete()"*ngIf="isFocused" class="material-icons">
+        delete_forever
+      </a>
     <div class="col" *ngIf="inputType!=='checkbox'">
-      <input [type]="config.input" class="form-control h6" *ngIf="inputType==='text'" [(ngModel)]="formValue"
-        placeholder="" />
+      <input [type]="config.input" class="form-control h6" *ngIf="inputType==='text'" (focus)="onFocus()"
+        (focusout)="onBlur()" [(ngModel)]="formValue" placeholder="" />
 
       <input type="text" *ngIf="inputType==='list'" placeholder="Pick one" aria-label="Number" matInput class="m-2"
         [(ngModel)]="formValue" [matAutocomplete]="auto">
@@ -21,7 +26,6 @@
       <input type="checkbox" class="p-2 m-2" [(ngModel)]="formValue" />
     </div>
   </div>
-  <textarea class=" col h6 p-0 m-0 h-100"
-    *ngIf="inputType==='textarea'" [(ngModel)]="formValue"
+  <textarea class=" col h6 p-0 m-0 h-100" *ngIf="inputType==='textarea'" [(ngModel)]="formValue"
     placeholder=""></textarea>
 </div>
