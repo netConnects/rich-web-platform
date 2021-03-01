@@ -40,6 +40,8 @@ export class ValueElementComponent extends JsonNode<ValueElementComponent> imple
   ngOnInit(): void {
 
     this.handler = new JsonNodeHandler(this, this.resolver, this.entry);
+    this.parent.childrens.push(this);
+
     this.el.nativeElement.className = this.el.nativeElement.className + ' row m-0 ';
     this.setLabel();
     if (this.checkbox()) {

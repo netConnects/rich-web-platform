@@ -67,7 +67,7 @@ export class ObjectElementComponent extends JsonNode<ObjectElementComponent> imp
     }
   }
   private handleNewNodes(): void {
-
+    this.parent.childrens.push(this);
     this.childrens.forEach(<T extends JsonNode<T>>(node: JsonNode<T>, i) => {
       if (this.tester.isValidToAdd(node.config)) {
         this.componentRefChildrens.push(this.handler.handleNewNode<T>(this, node, i));

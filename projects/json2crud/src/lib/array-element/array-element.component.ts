@@ -67,6 +67,7 @@ export class ArrayElementComponent extends JsonNode<ArrayElementComponent> imple
   }
 
   private handleNewNodes(): void {
+    this.parent.childrens.push(this);
     this.childrens.forEach(<T extends JsonNode<T>>(node: JsonNode<T>, i) => {
       if (node.type.name === 'ValueElementComponent') {
         this.childrenKeyType[this.key] = '';

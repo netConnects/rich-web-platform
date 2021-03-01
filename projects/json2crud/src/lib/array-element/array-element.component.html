@@ -1,10 +1,10 @@
-<mat-accordion class=' w-100 pt-5' (click)="activate()">
+<mat-accordion class=' w-100 pt-5' [class.d-none]="!this.visible" (click)="activate()">
   <div class="window">
     <div class="panel">
       <mat-card *ngIf="key" style="z-index: 20px;" class="d-flex flex-center flex-row justify-content-between p-2">
         <div class="  py-2 pl-2"> {{label}} </div> <button title="Add item to the {{key}}" autoClose="outside"
-          triggers="manual" #p="ngbPopover" *ngIf="globalConfig.isEditing" [ngbPopover]="popContent"
-           (click)="open(p)" container="body" placement="left" class="controls mt-0 mb-2 mx-2
+          triggers="manual" #p="ngbPopover" *ngIf="globalConfig.isEditing" [ngbPopover]="popContent" (click)="open(p)"
+          container="body" placement="left" class="controls mt-0 mb-2 mx-2
           mat-focus-indicator float-right controls mat-raised-button mat-button-base
           add-new">
           + </button>
@@ -23,8 +23,8 @@
 
 <ng-template #popContent>
   <div class="model">
-    <lib-json2crud [loadData]="{node:childrenKeyType}" [config]="configJson" title="Add to {{label}}" class="w-100 h-100"
-      (save)="addInArray($event)">
+    <lib-json2crud [loadData]="{node:childrenKeyType}" [config]="configJson" title="Add to {{label}}"
+      class="w-100 h-100" (save)="addInArray($event)">
     </lib-json2crud>
     <button mat-raised-button (click)="createWindow.close()" *ngIf=" show(config['Reset'])"
       class=" m-2 float-right controls mat-focus-indicator  controls float-right mat-raised-button mat-button-base  ">cancel</button>

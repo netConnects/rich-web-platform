@@ -45,7 +45,6 @@ export class JsonNodeHandler<T> {
     instance.index = i;
     instance.type = node.type;
     instance.parent = parent;
-   // instance['el'].className = 'p-0 m-0';
     if (clone) {
       instance.jsonData = JSON.parse(JSON.stringify(node.jsonData));
       parent.jsonData.push(instance.jsonData);
@@ -54,6 +53,7 @@ export class JsonNodeHandler<T> {
     }
     instance.parentData = node.parentData;
     instance.key = node.key;
+    instance.childrens.push(...node.childrens);
     instance.config = node.config;
     instance.globalConfig = node.globalConfig;
     return component;

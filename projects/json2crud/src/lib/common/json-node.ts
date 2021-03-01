@@ -21,15 +21,18 @@ export class JsonNode<T> {
     this.srchText = str;
     if (this.srchText) {
       const obj = typeof this.JSON_DATA === 'string' ? this.JSON_DATA : JSON.stringify(this.JSON_DATA);
-      if (this.key.includes(this.srchText) || this.label.includes(this.srchText) || obj.toString().includes(this.srchText)) {
+      const searchLowercase = this.srchText.toLowerCase();
+      if (this.key.toLowerCase().includes(searchLowercase)
+        || this.label.toLowerCase().includes(searchLowercase)
+        || obj.toLowerCase().includes(searchLowercase)) {
         this.visible = true;
       } else {
         this.visible = false;
       }
-      this.childrens.forEach(child => child.searchText = this.searchText);
     } else {
       this.visible = true;
     }
+    this.childrens.forEach(child => child.searchText = this.searchText);
   }
   get searchText(): string {
     return this.srchText;
