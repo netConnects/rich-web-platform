@@ -7,6 +7,7 @@ export class JsonNode<T> {
   entry: ViewContainerRef;
   parent: JsonNode<any>;
   childrenKeyType: {};
+  visible = true;
   key = '';
   removed = false;
   JSON_DATA: any;
@@ -15,6 +16,24 @@ export class JsonNode<T> {
   componentRefChildrens: ComponentRef<any>[] = [];
   label = '';
   expandMe = { value: true };
+  srchText: string;
+  set searchText(str: string) {
+    this.srchText = str;
+    if (this.srchText) {
+      const obj = typeof this.JSON_DATA === 'string' ? this.JSON_DATA : JSON.stringify(this.JSON_DATA);
+      if (this.key.includes(this.srchText) || this.label.includes(this.srchText) || obj.toString().includes(this.srchText)) {
+        this.visible = true;
+      } else {
+        this.visible = false;
+      }
+      this.childrens.forEach(child => child.searchText = this.searchText);
+    } else {
+      this.visible = true;
+    }
+  }
+  get searchText(): string {
+    return this.srchText;
+  }
   get jsonData(): any {
     return this.JSON_DATA;
   }

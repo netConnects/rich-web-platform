@@ -18,7 +18,9 @@
   margin: 3px;
   padding: 3px;
 }
-
+textarea{
+  resize: none;
+}
 .striped {
   background-color: var(--primary-darker-color);
   color: var(--text-warn-darker-color);

@@ -32,7 +32,6 @@ export class Json2crudComponent extends JsonNode<Json2crudComponent> implements 
   @Output() save: EventEmitter<{}> = new EventEmitter<{}>();
   @Output() closed: EventEmitter<string> = new EventEmitter<string>();
 
-  searchText = '';
   globalConfig: GlobalConfig = new GlobalConfig();
   handler: JsonNodeHandler<Json2crudComponent> = new JsonNodeHandler(this, this.resolver, this.entry);
   designWindow: any;
