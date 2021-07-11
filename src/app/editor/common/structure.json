@@ -1,0 +1,154 @@
+[
+  {
+    "language": "Java",
+    "globalReplace": [
+      {
+        "search": "/()/gms",
+        "replace": ""
+      }
+    ],
+    "parsers": [
+      {
+        "name": "BlockComment",
+        "matcherRegex": "/\\/\\*(.*?)\\*\\//smy",
+        "attributeArray": [
+          "Comment"
+        ],
+        "writerSubstitution": "/*$1*/",
+        "offsetRegex": "",
+        "childNodeTypes": [],
+        "replace": [
+          {
+            "search": "/()/gms",
+            "replace": ""
+          }
+        ]
+      },
+      {
+        "name": "Import",
+        "matcherRegex": "/^\\s*?(?<!=[\\w])(import static|import) (.*?)\\.([A-Z*].*?)((;)|\\.(.*?);)/smy",
+        "attributeArray": [
+          "import_type",
+          "package",
+          "className",
+          "staticMethod"
+        ],
+        "writerSubstitution": "import $1 $2.$3$4;",
+        "replace": [
+          {
+            "replace": ""
+          }
+        ],
+        "offsetRegex": "",
+        "childNodeTypes": [],
+        "comments": "writerSubstitution index starts from 1."
+      },
+      {
+        "name": "File",
+        "matcherRegex": "/.*/gsm",
+        "attributeArray": [],
+        "writerSubstitution": "",
+        "replace": [
+          {
+            "search": "/(search)/gms",
+            "replace": ""
+          }
+        ],
+        "offsetRegex": "",
+        "childNodeTypes": [
+          "BlockComment",
+          "LineComment",
+          "Class"
+        ]
+      },
+      {
+        "name": "Class",
+        "matcherRegex": "/(@.*?)?\\s*?(public|protected|private)?\\s+class (.*?)(extends (.*?))?(implements (.*?))?{/smy",
+        "attributeArray": [
+          "Annotation",
+          "Modifier",
+          "ClassName",
+          "ExtendsSyntax",
+          "SuperClass",
+          "InterfacesSyntax",
+          "Interfaces"
+        ],
+        "writerSubstitution": "",
+        "offsetRegex": "",
+        "childNodeTypes": [
+          "LineComment",
+          "Method",
+          "MemberVariable",
+          "Class",
+          "BlockComment"
+        ],
+        "replace": [],
+        "comments": ""
+      },
+      {
+        "name": "LineComment",
+        "matcherRegex": "/\\/\\/(.*?$)/smy",
+        "attributeArray": [
+          "Comment"
+        ],
+        "writerSubstitution": "//$1",
+        "offsetRegex": "",
+        "childNodeTypes": [],
+        "replace": [],
+        "comments": ""
+      }
+    ]
+  },
+  {
+    "language": "Typescript",
+    "globalReplace": [
+      {
+        "search": "/(search)/gms",
+        "replace": ""
+      }
+    ],
+    "parsers": [
+      {
+        "name": "BlockComment",
+        "matcherRegex": "",
+        "attributeArray": [
+          "Comment"
+        ],
+        "writerSubstitution": "/*$1*/",
+        "replace": [
+          {
+            "search": "/(search)/gms",
+            "replace": ""
+          }
+        ],
+        "offsetRegex": "",
+        "childNodeTypes": []
+      },
+      {
+        "name": "File",
+        "matcherRegex": "/.*/gsm",
+        "attributeArray": [],
+        "writerSubstitution": "",
+        "offsetRegex": "",
+        "childNodeTypes": [
+          "LineComment",
+          "BlockComment"
+        ],
+        "replace": [],
+        "comments": ""
+      },
+      {
+        "name": "LineComment",
+        "matcherRegex": "/\\/\\/(.*?$)/smy",
+        "attributeArray": [
+          "Comment"
+        ],
+        "writerSubstitution": "//$1",
+        "offsetRegex": "",
+        "childNodeTypes": [],
+        "replace": [],
+        "comments": ""
+      }
+    ]
+  }
+]

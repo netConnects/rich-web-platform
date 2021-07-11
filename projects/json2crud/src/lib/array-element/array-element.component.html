@@ -22,11 +22,11 @@
 </mat-accordion>
 
 <ng-template #popContent>
-  <div class="model">
+  <div class="d-flex flex-column w-100 parent h-100 p-0 m-0 my-0">
     <lib-json2crud [loadData]="{node:childrenKeyType}" [config]="configJson" title="Add to {{label}}"
-      class="w-100 h-100" (save)="addInArray($event)">
+      class="w-100 h-100 p-0 m-0"   (save)="addInArray($event)">
     </lib-json2crud>
-    <button mat-raised-button (click)="createWindow.close()" *ngIf=" show(config['Reset'])"
-      class=" m-2 float-right controls mat-focus-indicator  controls float-right mat-raised-button mat-button-base  ">cancel</button>
   </div>
+  <button mat-raised-button (click)="createWindow.close()" *ngIf=" show(config['Reset'])"
+    class=" m-2 float-right controls mat-focus-indicator  controls float-right mat-raised-button mat-button-base  ">cancel</button>
 </ng-template>

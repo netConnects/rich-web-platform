@@ -3,7 +3,7 @@
     <bb-panel #bottomWindow236 id="bottom-window2" [isView]='false' [divider]="divider3q" [rFlex]="true">
       <bb-panel id="top-window3" #topWindow3q [isView]='false' [class.pane-width]="leftPaneOpen!='y'"
         [class.left-title-width]="leftPaneOpen==='y'" [parent]="bottomWindow236" [rFlex]="true">
-        <lib-json2crud [loadData]="loadData" [saveUrl]="saveUrl" [config]="configJson" title="Oops 2 New"
+        <lib-json2crud [loadData]="{node:{simple:'test',branch:branch}}" [saveUrl]="saveUrl" [config]="configJson" title="Oops 2 New"
           [foldingDirection]="'y'" (closed)="handleClose($event)" [resetFlag]="reset" class="w-100 h-100"
           (save)="saveData($event)">
         </lib-json2crud>

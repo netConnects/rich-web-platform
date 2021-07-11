@@ -13,9 +13,19 @@ $info: rgb(23, 184, 177);
   flex-direction: column;
   height: 100%;
 }
+
+.popover-body {
+
+    min-width: 325px !important;
+    max-height: 350px !important;
+    overflow: auto;
+
+}
+
 .popover {
-  min-width: 375px !important;
-  min-height: 450px !important;
+  min-width: 350px !important;
+  max-height: 400px !important;
+  //overflow: auto;
 }
 .mat-expansion-panel-content {
   height: 100%;

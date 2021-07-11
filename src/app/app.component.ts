@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Branch } from './editor/common/programming-blocks';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ export class AppComponent implements OnInit {
       open: ''
     }
   };
-
+  branch = new Branch('Simple');
   loadData = 'assets/structure.json';
   saveUrl = '';
   configOutputJson = {
