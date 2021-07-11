@@ -31,7 +31,7 @@ $spacing: 8px;
     overflow: visible;
     background: #fff;
     flex-flow: row nowrap;
-    border: $spacing/2 solid #f0f0f0;
+    border: $spacing*0.5 solid #f0f0f0;
     flex: 1 1 30%;
     min-width: 35px;
     overflow: hidden;
@@ -71,9 +71,9 @@ $spacing: 8px;
         border-width: 0 1px;
         top: 50%;
         margin-top: -10px;
-        margin: -10px 0 0 $spacing/4;
+        margin: -10px 0 0 $spacing*0.25;
         height: 20px;
-        width: $spacing/2;
+        width: $spacing*0.5;
     }
 }
 
@@ -81,16 +81,16 @@ $spacing: 8px;
     span {
         border-width: 1px 0;
         left: 50%;
-        margin: $spacing/4 0 0 -10px;
+        margin: $spacing*0.25 0 0 -10px;
         width: 20px;
-        height: $spacing/2;
+        height: $spacing*0.5;
     }
 }
 
 .handle-x {
     cursor: row-resize;
     width: calc(100% - 10px);
-    margin-top: -#{$spacing/2};
+    margin-top: -#{$spacing*0.5};
 }
 
 .handle-y {
@@ -115,7 +115,7 @@ $spacing: 8px;
         margin-top: -#{$spacing};
     }
     .handle-y {
-        margin-right: -#{$spacing/2};
+        margin-right: -#{$spacing*0.5};
     }
 }
 
@@ -165,25 +165,25 @@ $spacing: 8px;
         border-width: 0 1px;
         top: 43%;
         margin-top: -10px;
-        margin: -10px 0 0 $spacing/4;
+        margin: -10px 0 0 $spacing*0.25;
         height: 20px;
-        width: $spacing/2;
+        width: $spacing*0.5;
     }
 }
 .handle-x {
     span {
         border-width: 1px 0;
         left: 50%;
-        margin: $spacing/4 0 0 -10px;
+        margin: $spacing*0.25 0 0 -10px;
         width: 20px;
-        height: $spacing/2;
+        height: $spacing*0.5;
     }
 }
 .handle-x {
     cursor: row-resize;
     width: calc(100% - 10px);
 
-    margin-top: -#{$spacing/2};
+    margin-top: -#{$spacing*0.5};
 }
 .handle-y {
     cursor: col-resize;
@@ -207,7 +207,7 @@ $spacing: 8px;
         margin-top: -#{$spacing};
     }
     .handle-x {
-        margin-right: -#{$spacing/2};
+        margin-right: -#{$spacing*0.5};
     }
 }
 

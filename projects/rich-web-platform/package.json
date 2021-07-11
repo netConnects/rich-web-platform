@@ -2,8 +2,8 @@
   "name": "rich-web-platform",
   "version": "0.1.81",
   "peerDependencies": {
-    "@angular/common": "^11.0.5",
-    "@angular/core": "^11.0.5",
+    "@angular/common": "^12.1.1",
+    "@angular/core": "^12.1.1",
     "tslib": "^2.0.0"
   },
   "author": {

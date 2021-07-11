@@ -8,7 +8,7 @@
   },
   "main": "public-api.ts",
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.3.0"
   },
   "author": {
     "email": "senthurai@gmail.com",
