@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
      
  
-<---Parent < --- child <---divider----/\> <------child-----/\>----/parent/-\>
+<---Parent < --- child ---> <---divider----/\> <------child-----/\>----/parent/-\>
 
   panel1.0
  <bb-panel #bottomWindow236 id="bottom-window2" [isView]='false' [divider]="divider3q" [rFlex]="true">
