@@ -3,7 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.3.
 
      
- <!--
+ 
 <---Parent < --- child <---divider----/\> <------child-----/\>----/parent/-\>
 
   panel1.0
@@ -20,7 +20,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
           src="https://viewer.diagrams.net/?highlight=0000ff&edit=https%3A%2F%2Fapp.diagrams.net%2F%23G1A2RwwXj5u9Pzx2Yay0hsWD4EvFW_K5a7&layers=1&nav=1#G1A2RwwXj5u9Pzx2Yay0hsWD4EvFW_K5a7"></iframe>
 
       </bb-panel>
-    </bb-panel>-->
+    </bb-panel>
 
 ## Development server
 
