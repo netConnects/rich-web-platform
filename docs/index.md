@@ -1,6 +1,6 @@
 ## Rich Web Platform
 
-You can use the [editor on GitHub](https://github.com/netConnects/rich-web-platform/edit/main/docs/index.md) 
+# helps to create web applications using resizable panels views 
 
 
 
